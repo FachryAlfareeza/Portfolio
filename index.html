@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <meta name="description" content="Personal portfolio" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" id="brand">Portfolio</a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero container">
+      <img class="avatar" id="avatar" alt="" />
+      <div class="hero-text">
+        <h1 id="name"></h1>
+        <p class="tagline" id="tagline"></p>
+        <p class="location" id="location"></p>
+        <div class="social" id="social"></div>
+        <a class="btn btn-primary" id="resumeBtn" style="display:none">Download Resume</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section container" id="about">
+      <h2>About</h2>
+      <p class="about-text" id="about-text"></p>
+    </section>
+
+    <!-- Skills -->
+    <section class="section container" id="skills">
+      <h2>Skills</h2>
+      <div class="skills" id="skills-list"></div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section container" id="projects">
+      <h2>Projects</h2>
+      <div class="projects" id="projects-list"></div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section container" id="contact">
+      <h2>Contact</h2>
+      <p class="about-text">Want to get in touch? Reach me at
+        <a id="contact-email" href="#"></a>.
+      </p>
+      <div class="social" id="social-contact"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> <span id="footer-name"></span>. Built with a JSON-driven template.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

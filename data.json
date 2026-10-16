@@ -1,0 +1,94 @@
+{
+  "profile": {
+    "name": "Fachry Alfareeza",
+    "tagline": "Software Developer & Data Enthusiast",
+    "location": "Yogyakarta, Indonesia",
+    "avatar": "https://avatars.githubusercontent.com/u/189084544?v=4",
+    "about": "I build web apps, dashboards, and AI-powered tools. I enjoy working across the stack — from data preprocessing pipelines in Python to interactive front-ends in React and TypeScript. Currently a student at DTETI FT UGM, exploring fintech, geospatial data, and renewable energy applications.",
+    "email": "youremail@example.com",
+    "resumeUrl": ""
+  },
+  "social": [
+    { "label": "GitHub", "url": "https://github.com/FachryAlfareeza", "icon": "github" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/", "icon": "linkedin" },
+    { "label": "Email", "url": "mailto:youremail@example.com", "icon": "mail" }
+  ],
+  "skills": [
+    "Python",
+    "TypeScript",
+    "JavaScript",
+    "React",
+    "FastAPI",
+    "C#",
+    "Kotlin",
+    "Data Preprocessing",
+    "Geospatial / H3",
+    "AI Agents"
+  ],
+  "projects": [
+    {
+      "name": "WeBank-AI",
+      "description": "Event-driven AI banking agent replicating WeBank's Weiyedai: evaluates MSME micro-loans from daily cash flow in one session — DSCR risk scoring, HMAC-based privacy proofs, prompt-injection defense, and PIPL-compliant data purging. Built for FinTechathon 2026.",
+      "tech": ["Python", "React", "FastAPI", "Qwen2.5"],
+      "repo": "https://github.com/FachryAlfareeza/WeBank-AI",
+      "demo": "",
+      "featured": true
+    },
+    {
+      "name": "InaFlews",
+      "description": "A mockup dashboard using Uber's H3 coordinate system to pinpoint locations with high risk of floods and landslides.",
+      "tech": ["TypeScript", "H3"],
+      "repo": "https://github.com/FachryAlfareeza/InaFlews",
+      "demo": "",
+      "featured": true
+    },
+    {
+      "name": "IETO-Dashboard",
+      "description": "A mockup dashboard for monitoring an energy company's generation of renewable and non-renewable energy.",
+      "tech": ["TypeScript"],
+      "repo": "https://github.com/FachryAlfareeza/IETO-Dashboard",
+      "demo": "",
+      "featured": true
+    },
+    {
+      "name": "AirQuality_Report",
+      "description": "A demonstration of data preprocessing from multiple weather APIs.",
+      "tech": ["Python"],
+      "repo": "https://github.com/FachryAlfareeza/AirQuality_Report",
+      "demo": "",
+      "featured": false
+    },
+    {
+      "name": "SolarWise",
+      "description": "A C# project exploring solar energy tooling.",
+      "tech": ["C#"],
+      "repo": "https://github.com/FachryAlfareeza/SolarWise",
+      "demo": "",
+      "featured": false
+    },
+    {
+      "name": "Telaah",
+      "description": "A JavaScript project.",
+      "tech": ["JavaScript"],
+      "repo": "https://github.com/FachryAlfareeza/Telaah",
+      "demo": "",
+      "featured": false
+    },
+    {
+      "name": "MobDevAss1",
+      "description": "A mobile development project built with Kotlin.",
+      "tech": ["Kotlin"],
+      "repo": "https://github.com/FachryAlfareeza/MobDevAss1",
+      "demo": "",
+      "featured": false
+    },
+    {
+      "name": "senpro-github-action",
+      "description": "DTETI FT UGM — coursework project.",
+      "tech": ["CSS"],
+      "repo": "https://github.com/FachryAlfareeza/senpro-github-action",
+      "demo": "",
+      "featured": false
+    }
+  ]
+}
