@@ -10,8 +10,8 @@
   },
   "social": [
     { "label": "GitHub", "url": "https://github.com/FachryAlfareeza", "icon": "github" },
-    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/", "icon": "linkedin" },
-    { "label": "Email", "url": "mailto:youremail@example.com", "icon": "mail" }
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/fachryalfareeza", "icon": "linkedin" },
+    { "label": "Email", "url": "mailto:fachryalfareeza@gmail.com", "icon": "mail" }
   ],
   "skills": [
     "Python",
@@ -39,7 +39,7 @@
       "description": "A mockup dashboard using Uber's H3 coordinate system to pinpoint locations with high risk of floods and landslides.",
       "tech": ["TypeScript", "H3"],
       "repo": "https://github.com/FachryAlfareeza/InaFlews",
-      "demo": "",
+      "demo": "https://fachryalfareeza.github.io/InaFlews",
       "featured": true
     },
     {
@@ -47,7 +47,7 @@
       "description": "A mockup dashboard for monitoring an energy company's generation of renewable and non-renewable energy.",
       "tech": ["TypeScript"],
       "repo": "https://github.com/FachryAlfareeza/IETO-Dashboard",
-      "demo": "",
+      "demo": "https://fachryalfareeza.github.io/IETO-Dashboard/",
       "featured": true
     },
     {
@@ -60,7 +60,7 @@
     },
     {
       "name": "SolarWise",
-      "description": "A C# project exploring solar energy tooling.",
+      "description": "A climate action web application designed to map and estimate the benefits of solar panel installations.",
       "tech": ["C#"],
       "repo": "https://github.com/FachryAlfareeza/SolarWise",
       "demo": "",
@@ -68,25 +68,33 @@
     },
     {
       "name": "Telaah",
-      "description": "A JavaScript project.",
+      "description": "Mockup document cross-check tool for Indonesian Authorities.",
       "tech": ["JavaScript"],
       "repo": "https://github.com/FachryAlfareeza/Telaah",
       "demo": "",
       "featured": false
     },
     {
-      "name": "MobDevAss1",
-      "description": "A mobile development project built with Kotlin.",
-      "tech": ["Kotlin"],
-      "repo": "https://github.com/FachryAlfareeza/MobDevAss1",
+      "name": "SiPinter",
+      "description": "Quiz, assignment, and exam scoring-aid application for lecturers and assistants.",
+      "tech": ["PLpgSQL"],
+      "repo": "https://github.com/IlkhamAbdillah/SiPinter",
+      "demo": "",
+      "featured": false
+    },
+     {
+      "name": "Aksi-n",
+      "description": "Campus Volunteer & Community Hours Tracker.",
+      "tech": [""],
+      "repo": "https://github.com/rsyarsya/Aksi-n",
       "demo": "",
       "featured": false
     },
     {
-      "name": "senpro-github-action",
-      "description": "DTETI FT UGM — coursework project.",
-      "tech": ["CSS"],
-      "repo": "https://github.com/FachryAlfareeza/senpro-github-action",
+      "name": "MotorCenter",
+      "description": "Motorcycle Workshop & Inventory Management System.",
+      "tech": ["ExpressJS", "NodeJS", "TypeScript"],
+      "repo": "https://github.com/rsyarsya/Aksi-n",
       "demo": "",
       "featured": false
     }
