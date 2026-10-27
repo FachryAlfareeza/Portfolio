@@ -46,7 +46,7 @@ export function ContactForm() {
   }
 
   const fieldClass =
-    "w-full rounded-sm2 border border-white/20 bg-white/5 px-3 py-[10px] text-[13px] text-[#f1f4ed] placeholder:text-white/40 outline-none transition-colors focus:border-lime";
+    "w-full rounded-sm2 border border-white/20 bg-white/5 px-3 py-[10px] text-[13px] text-white placeholder:text-white/40 outline-none transition-colors focus:border-orange";
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3" noValidate>
@@ -83,14 +83,14 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="inline-flex min-h-[47px] items-center justify-center rounded-sm2 bg-lime px-[18px] text-[12px] font-bold text-forest-900 transition-[transform,background,opacity] duration-200 hover:-translate-y-0.5 hover:bg-lime-soft disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex min-h-[47px] items-center justify-center rounded-sm2 bg-orange px-[18px] text-[12px] font-bold text-night-900 transition-[transform,background,opacity] duration-200 hover:-translate-y-0.5 hover:bg-orange-strong disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status === "sending" ? "Sending…" : "Send message"}
       </button>
 
       <p aria-live="polite" className="min-h-[18px] text-[11px]">
         {status === "sent" && (
-          <span className="text-lime">Thanks — your message is on its way.</span>
+          <span className="text-orange">Thanks, your message is on its way.</span>
         )}
         {status === "error" && (
           <span className="text-[#ff9b9b]">{error}</span>

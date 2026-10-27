@@ -12,13 +12,13 @@ const navLinks = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-30 border-b border-line/80 bg-paper/90 backdrop-blur-md dark:border-white/10 dark:bg-forest-900/85">
+    <header className="sticky top-0 z-30 border-b border-line/80 bg-paper/90 backdrop-blur-md dark:border-night-line dark:bg-night-900/85">
       <Container className="flex h-[76px] items-center justify-between max-[600px]:h-[65px]">
         <a
           href="#top"
-          className="text-xl font-extrabold tracking-[-0.07em] transition-colors hover:text-green"
+          className="text-xl font-extrabold tracking-[-0.07em] transition-colors hover:text-blue-strong dark:hover:text-orange"
         >
-          Portfolio<span className="text-green">.</span>
+          Portfolio<span className="text-blue-strong dark:text-orange">.</span>
         </a>
 
         <nav
@@ -29,7 +29,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-[12px] font-bold tracking-[0.02em] text-muted transition-colors hover:text-green dark:text-white/60 dark:hover:text-lime"
+              className="text-[12px] font-bold tracking-[0.02em] text-muted transition-colors hover:text-blue-strong dark:text-white/60 dark:hover:text-orange"
             >
               {link.label}
             </a>
@@ -40,10 +40,10 @@ export function Header() {
           <ThemeToggle />
           <a
             href="#contact"
-            className="inline-flex min-h-[44px] items-center gap-[7px] rounded-sm2 border border-line px-[15px] text-[12px] font-bold tracking-[0.02em] transition-colors hover:border-green hover:text-green dark:border-white/15 dark:hover:border-lime dark:hover:text-lime"
+            className="inline-flex min-h-[44px] items-center gap-[7px] rounded-sm2 border border-line px-[15px] text-[12px] font-bold tracking-[0.02em] transition-colors hover:border-blue-strong hover:text-blue-strong dark:border-white/15 dark:hover:border-orange dark:hover:text-orange"
           >
             Get in touch
-            <ArrowUpRight className="h-3.5 w-3.5 text-green dark:text-lime" />
+            <ArrowUpRight className="h-3.5 w-3.5 text-blue-strong dark:text-orange" />
           </a>
         </div>
       </Container>

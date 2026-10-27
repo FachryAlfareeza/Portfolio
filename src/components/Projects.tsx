@@ -29,8 +29,8 @@ export function Projects({ projects }: { projects: Project[] }) {
                 onClick={() => setActive(filter)}
                 className={`min-h-[36px] rounded-xs border px-[10px] text-[10px] transition-colors ${
                   pressed
-                    ? "border-green bg-green text-white dark:border-lime dark:bg-lime dark:text-forest-900"
-                    : "border-line text-muted hover:border-green hover:text-green dark:border-white/15 dark:text-white/60 dark:hover:border-lime dark:hover:text-lime"
+                    ? "border-blue-strong bg-blue-strong text-white dark:border-orange dark:bg-orange dark:text-night-900"
+                    : "border-line text-muted hover:border-blue-strong hover:text-blue-strong dark:border-white/15 dark:text-white/60 dark:hover:border-orange dark:hover:text-orange"
                 }`}
               >
                 {filter}
@@ -44,18 +44,18 @@ export function Projects({ projects }: { projects: Project[] }) {
         {shown.map((project) => (
           <article
             key={project.name}
-            className={`flex min-h-[255px] flex-col border border-line p-[22px_23px] transition-[transform,border-color] duration-200 hover:-translate-y-[3px] hover:border-[#aabaae] dark:border-white/10 dark:hover:border-white/25 ${
+            className={`flex min-h-[255px] flex-col border border-line p-[22px_23px] transition-[transform,border-color] duration-200 hover:-translate-y-[3px] hover:border-blue/60 dark:border-night-line dark:hover:border-orange/40 ${
               project.featured
-                ? "bg-[#e9efe5] dark:bg-white/5"
-                : "bg-white dark:bg-white/[0.03]"
+                ? "bg-panel dark:bg-white/5"
+                : "bg-white dark:bg-night-800"
             } max-[600px]:min-h-[235px]`}
           >
             <div className="flex justify-between gap-3">
-              <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-green dark:text-lime">
+              <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-blue-strong dark:text-orange">
                 {project.track}
               </span>
               {project.featured && (
-                <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-green dark:text-lime">
+                <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-blue-strong dark:text-orange">
                   Featured
                 </span>
               )}
@@ -72,14 +72,14 @@ export function Projects({ projects }: { projects: Project[] }) {
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="bg-white/70 px-[7px] py-1 font-mono text-[9px] text-[#58685c] dark:bg-white/10 dark:text-white/60"
+                  className="bg-black/[0.04] px-[7px] py-1 font-mono text-[9px] text-[#44556a] dark:bg-white/10 dark:text-white/60"
                 >
                   {t}
                 </span>
               ))}
             </div>
 
-            <div className="mt-auto flex gap-4 pt-[11px] text-[11px] font-bold text-green dark:text-lime">
+            <div className="mt-auto flex gap-4 pt-[11px] text-[11px] font-bold text-blue-strong dark:text-orange">
               {project.repo && (
                 <a
                   href={project.repo}

@@ -40,7 +40,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={label}
       title={label}
-      className="inline-flex h-[44px] w-[44px] items-center justify-center rounded-sm2 border border-line text-muted transition-colors hover:border-green hover:text-green dark:border-white/15 dark:text-white/70 dark:hover:border-lime dark:hover:text-lime"
+      className="inline-flex h-[44px] w-[44px] items-center justify-center rounded-sm2 border border-line text-muted transition-colors hover:border-blue-strong hover:text-blue-strong dark:border-white/15 dark:text-white/70 dark:hover:border-orange dark:hover:text-orange"
     >
       {/* Render both and toggle with CSS so there's no icon flash before hydration */}
       <SunIcon className="hidden h-[18px] w-[18px] dark:block" />

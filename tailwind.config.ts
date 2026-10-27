@@ -8,24 +8,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Ported 1:1 from legacy styles.css :root tokens
-        paper: "#f6f7f4",
-        ink: "#1c2924",
-        muted: "#68736d",
-        line: "#dce2dc",
-        green: {
-          DEFAULT: "#176b4b",
-          deep: "#10573c",
+        // Brand palette — from the Eja logo kit:
+        // off-white #FDFDFD, sky blue #89CFF0, sandy orange #F4A261, black.
+        // Light mode = blue on white; dark mode = orange on near-black.
+
+        // --- Light mode roles ---
+        paper: "#FDFDFD", // brand off-white, page background
+        ink: "#0F1C2E", // deep navy text
+        muted: "#5A6B7F", // muted slate-blue
+        line: "#DCE6EF", // pale blue border
+        panel: "#EDF3F9", // tag/card tint
+
+        // Brand blue, used as the light-mode signature accent
+        blue: {
+          DEFAULT: "#89CFF0", // raw brand blue (fills, dots, highlights)
+          strong: "#2176AE", // darkened for links/buttons/focus (contrast-safe)
+          deep: "#18567F", // pressed/hover
         },
-        lime: {
-          DEFAULT: "#d6ef9d",
-          soft: "#e2f5b5",
+
+        // Brand orange, the dark-mode signature accent
+        orange: {
+          DEFAULT: "#F4A261", // raw brand orange
+          strong: "#E07B39", // hover/pressed
         },
-        panel: "#edf1eb",
-        // Dark panel tones used by the hero card and contact section
-        forest: {
-          900: "#1e352a",
-          800: "#20362c",
+
+        // --- Dark mode surfaces (warm near-black) ---
+        night: {
+          900: "#0A0A0B", // page background
+          800: "#161618", // raised panels/cards
+          700: "#201E1C", // hero card / contact panel
+          line: "#2A2724", // warm dark border
         },
       },
       fontFamily: {
@@ -41,9 +53,9 @@ const config: Config = {
         tighter2: "-0.055em",
       },
       boxShadow: {
-        // hero card hard offset shadow
-        card: "18px 18px 0 #e7ebdf",
-        dot: "0 0 0 4px #e2efdf",
+        // hero card hard offset shadow (pale blue in light mode)
+        card: "18px 18px 0 #D6E6F2",
+        dot: "0 0 0 4px #D6E9F5",
       },
       borderRadius: {
         xs: "2px",

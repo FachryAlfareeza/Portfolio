@@ -36,7 +36,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFlashTheme }} />
       </head>
-      <body className="bg-paper text-ink transition-colors dark:bg-forest-900 dark:text-paper">
+      <body className="bg-paper text-ink transition-colors dark:bg-night-900 dark:text-[#F4EFEA]">
         {children}
       </body>
     </html>
