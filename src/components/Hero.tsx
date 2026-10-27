@@ -36,8 +36,12 @@ export function Hero({ profile }: { profile: Profile }) {
         </p>
 
         <h1 className="mb-5 text-[clamp(43px,6.1vw,74px)] font-bold leading-[1.06] tracking-tightest">
-          {profile.tagline}
+          {profile.headline}
         </h1>
+
+        <p className="max-w-[500px] text-[16px] leading-[1.8] text-muted dark:text-white/60">
+          {profile.tagline}
+        </p>
 
         <div className="mt-[30px] flex flex-wrap items-center gap-3">
           <a

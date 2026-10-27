@@ -2,6 +2,9 @@ export type SocialIcon = "github" | "linkedin" | "email";
 
 export interface Profile {
   name: string;
+  /** Short, punchy hero headline. */
+  headline: string;
+  /** Supporting sentence shown under the headline. */
   tagline: string;
   availability: string;
   location: string;

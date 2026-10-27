@@ -1,7 +1,8 @@
 {
   "profile": {
     "name": "Muhammad Fachry Alfareeza",
-    "tagline": "Information Engineering student at Universitas Gadjah Mada. I build software, work with data, and put AI to practical use.",
+    "headline": "Software, data, and applied AI.",
+    "tagline": "Information Engineering student at Universitas Gadjah Mada, building things that put those to practical use.",
     "availability": "Open to software, data, and applied AI work",
     "location": "Yogyakarta, Indonesia",
     "about": "I study Information Engineering at Universitas Gadjah Mada and build things that use data to make a decision easier. Lately that has meant a loan-assessment agent for small businesses, flood and landslide risk maps, air-quality pipelines, and an energy dashboard. I spent a semester on a funded exchange at Kırıkkale University in Türkiye.",
