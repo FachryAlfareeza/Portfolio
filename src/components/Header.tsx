@@ -1,6 +1,7 @@
 import { Container } from "./Container";
 import { ArrowUpRight } from "./icons";
 import { ThemeToggle } from "./ThemeToggle";
+import { Logo } from "./Logo";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -14,12 +15,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-line/80 bg-paper/90 backdrop-blur-md dark:border-night-line dark:bg-night-900/85">
       <Container className="flex h-[76px] items-center justify-between max-[600px]:h-[65px]">
-        <a
-          href="#top"
-          className="text-xl font-extrabold tracking-[-0.07em] transition-colors hover:text-blue-strong dark:hover:text-orange"
-        >
-          Portfolio<span className="text-blue-strong dark:text-orange">.</span>
-        </a>
+        <Logo />
 
         <nav
           aria-label="Primary"

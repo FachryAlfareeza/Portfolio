@@ -20,6 +20,19 @@
   }
 }
 
+@layer components {
+  /*
+    Brand logomark rendered via CSS mask so it inherits the theme accent
+    color (currentColor) regardless of the SVG's own fills. Swap the file at
+    /public/brand/logomark.svg and the color still follows light/dark mode.
+  */
+  .brand-logomark {
+    background-color: currentColor;
+    -webkit-mask: var(--logomark-src) center / contain no-repeat;
+    mask: var(--logomark-src) center / contain no-repeat;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
