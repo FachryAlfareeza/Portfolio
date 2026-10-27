@@ -23,14 +23,22 @@ export const metadata: Metadata = {
     "Portfolio of Muhammad Fachry Alfareeza — software engineering, data analysis, and applied AI.",
 };
 
+// Runs before paint to set the theme class, preventing a flash of the wrong theme.
+const noFlashTheme = `(function(){try{var t=localStorage.getItem('theme');if(!t){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}var r=document.documentElement;r.classList.toggle('dark',t==='dark');r.style.colorScheme=t;}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${dmMono.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${manrope.variable} ${dmMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: noFlashTheme }} />
+      </head>
+      <body className="bg-paper text-ink transition-colors dark:bg-forest-900 dark:text-paper">
+        {children}
+      </body>
     </html>
   );
 }
