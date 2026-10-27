@@ -1,10 +1,10 @@
 {
   "profile": {
     "name": "Muhammad Fachry Alfareeza",
-    "tagline": "Information Engineering student at Universitas Gadjah Mada, exploring software engineering, data analysis, and practical AI through hands-on projects.",
-    "availability": "Interested in software, data & applied AI",
+    "tagline": "Information Engineering student at Universitas Gadjah Mada. I build software, work with data, and put AI to practical use.",
+    "availability": "Open to software, data, and applied AI work",
     "location": "Yogyakarta, Indonesia",
-    "about": "I am an Information Engineering undergraduate at Universitas Gadjah Mada. I build web applications and dashboards, work with Python data workflows, and explore how AI can support practical decision-making. My recent work spans MSME finance, geospatial risk mapping, air-quality data, and energy monitoring. I also completed a fully funded engineering exchange at Kırıkkale University in Türkiye.",
+    "about": "I study Information Engineering at Universitas Gadjah Mada and build things that use data to make a decision easier. Lately that has meant a loan-assessment agent for small businesses, flood and landslide risk maps, air-quality pipelines, and an energy dashboard. I spent a semester on a funded exchange at Kırıkkale University in Türkiye.",
     "email": "fachryalfareeza@gmail.com"
   },
   "social": [
@@ -21,7 +21,7 @@
     {
       "name": "WeBank-AI",
       "track": "Software & AI",
-      "description": "An event-driven AI banking-agent prototype for MSME micro-loan assessment from daily cash flow. Includes DSCR risk scoring, HMAC-based privacy proofs, prompt-injection defenses, and data-purging controls. Built for FinTechathon 2026.",
+      "description": "Scores small-business micro-loans from daily cash flow. An event-driven banking agent with DSCR risk scoring, HMAC privacy proofs, prompt-injection defenses, and data-purging controls. Built for FinTechathon 2026.",
       "tech": ["Python", "React", "FastAPI", "Qwen2.5"],
       "repo": "https://github.com/FachryAlfareeza/WeBank-AI",
       "featured": true
@@ -29,23 +29,31 @@
     {
       "name": "InaFlews",
       "track": "Data & analytics",
-      "description": "A geospatial dashboard mockup using Uber H3 cells to explore locations with elevated flood and landslide risk.",
+      "description": "Maps flood and landslide risk across Uber H3 cells. A geospatial dashboard mockup for spotting high-risk locations.",
       "tech": ["TypeScript", "H3"],
       "repo": "https://github.com/FachryAlfareeza/InaFlews",
       "demo": "https://fachryalfareeza.github.io/InaFlews",
       "featured": true
     },
     {
+      "name": "AITF_Web (Airen)",
+      "track": "Software & AI",
+      "description": "Reviews Indonesian government TOR and RAB documents against a two-stage screening checklist. A frontend-only wireframe that consumes AI-review output from a separate system and leaves the final verdict to a human reviewer.",
+      "tech": ["React", "TypeScript", "Vite", "Tailwind"],
+      "repo": "https://github.com/FachryAlfareeza/AITF_Web",
+      "featured": true
+    },
+    {
       "name": "AirQuality_Report",
       "track": "Data & analytics",
-      "description": "A Python demonstration of preprocessing and combining data from multiple weather APIs.",
+      "description": "Cleans and merges data from several weather APIs into one dataset. A Python pipeline.",
       "tech": ["Python", "API data", "Preprocessing"],
       "repo": "https://github.com/FachryAlfareeza/AirQuality_Report"
     },
     {
       "name": "IETO-Dashboard",
       "track": "Data & analytics",
-      "description": "An energy monitoring dashboard mockup for comparing renewable and non-renewable generation.",
+      "description": "Compares renewable and non-renewable generation side by side. An energy monitoring dashboard mockup.",
       "tech": ["TypeScript", "Data visualization"],
       "repo": "https://github.com/FachryAlfareeza/IETO-Dashboard",
       "demo": "https://fachryalfareeza.github.io/IETO-Dashboard/"
@@ -53,16 +61,9 @@
     {
       "name": "SolarWise",
       "track": "Software & AI",
-      "description": "A climate-action web application concept for mapping solar-panel opportunities and estimating potential benefits.",
+      "description": "Finds where solar panels pay off and estimates the return. A climate-action web app concept.",
       "tech": ["C#"],
       "repo": "https://github.com/FachryAlfareeza/SolarWise"
-    },
-    {
-      "name": "Telaah",
-      "track": "Software & AI",
-      "description": "A JavaScript mockup for cross-checking documents for Indonesian public authorities.",
-      "tech": ["JavaScript"],
-      "repo": "https://github.com/FachryAlfareeza/Telaah"
     }
   ],
   "experience": [
