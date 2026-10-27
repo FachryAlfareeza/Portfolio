@@ -44,10 +44,10 @@ export function Projects({ projects }: { projects: Project[] }) {
         {shown.map((project) => (
           <article
             key={project.name}
-            className={`flex min-h-[255px] flex-col border border-line p-[22px_23px] transition-[transform,border-color] duration-200 hover:-translate-y-[3px] hover:border-blue/60 dark:border-night-line dark:hover:border-orange/40 ${
+            className={`flex min-h-[255px] flex-col border p-[22px_23px] transition-[transform,border-color] duration-200 hover:-translate-y-[3px] ${
               project.featured
-                ? "bg-panel dark:bg-white/5"
-                : "bg-white dark:bg-night-800"
+                ? "border-blue-strong bg-blue/15 hover:border-blue-deep dark:border-orange dark:bg-orange/15 dark:hover:border-orange-strong"
+                : "border-line bg-white hover:border-blue/60 dark:border-night-line dark:bg-night-800 dark:hover:border-orange/40"
             } max-[600px]:min-h-[235px]`}
           >
             <div className="flex justify-between gap-3">
@@ -55,7 +55,7 @@ export function Projects({ projects }: { projects: Project[] }) {
                 {project.track}
               </span>
               {project.featured && (
-                <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-blue-strong dark:text-orange">
+                <span className="rounded-full bg-blue-strong px-2 py-[2px] font-mono text-[9px] uppercase tracking-[0.08em] text-white dark:bg-orange dark:text-night-900">
                   Featured
                 </span>
               )}
