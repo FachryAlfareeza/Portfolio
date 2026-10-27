@@ -19,7 +19,7 @@ export function Logo({ showWordmark = true }: { showWordmark?: boolean }) {
       />
       {showWordmark && (
         <span className="text-xl font-extrabold tracking-[-0.07em] text-ink transition-colors group-hover:text-blue-strong dark:text-[#F4EFEA] dark:group-hover:text-orange">
-          Eja<span className="text-blue-strong dark:text-orange">.</span>
+          FachryAlfareeza<span className="text-blue-strong dark:text-orange">.</span>
         </span>
       )}
     </a>
