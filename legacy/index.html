@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <meta name="description" content="Personal portfolio" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="top">
+  <a class="skip-link" href="#about">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#top" class="wordmark">Portfolio<span>.</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#credentials">Credentials</a>
+      </nav>
+      <a href="#contact" class="nav-cta">Get in touch <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span><span id="availability"></span></p>
+        <h1 id="tagline"></h1>
+        <div class="hero-actions">
+          <a class="button button-primary" id="email-hero" href="#">Email me <span aria-hidden="true">↗</span></a>
+          <a class="button button-quiet" href="#projects">View projects</a>
+        </div>
+        <p class="hero-meta">
+          <span id="location"></span>
+        </p>
+      </div>
+
+      <aside class="hero-card" aria-hidden="true">
+        <div class="card-topline">
+          <span>PORTFOLIO</span>
+          <span class="orbit-mark">◍</span>
+        </div>
+        <div class="focus-list">
+          <div>
+            <span class="focus-number">01</span>
+            <p><strong>Software engineering</strong>Web apps, APIs, and applied AI prototypes.</p>
+          </div>
+          <div>
+            <span class="focus-number">02</span>
+            <p><strong>Data &amp; analytics</strong>Python workflows, dashboards, and exploratory analysis.</p>
+          </div>
+          <div>
+            <span class="focus-number">03</span>
+            <p><strong>Research</strong>Geospatial risk, energy, and decision support.</p>
+          </div>
+        </div>
+        <div class="card-bottom">
+          <span>BUILD</span>
+          <span>EXPLORE</span>
+        </div>
+      </aside>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <p class="section-label"><span>01</span>About</p>
+      <div class="section-content about-copy">
+        <h2>Building <em>practical</em> software and data tools.</h2>
+        <p id="about-text"></p>
+        <div class="social-links" id="social"></div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <p class="section-label"><span>02</span>Skills</p>
+      <div class="section-content">
+        <div class="section-heading">
+          <h2>Toolbox</h2>
+        </div>
+        <div class="skill-groups" id="skills-list"></div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section projects-section" id="projects">
+      <p class="section-label"><span>03</span>Projects</p>
+      <div class="section-content">
+        <div class="section-heading projects-heading">
+          <h2>Selected work</h2>
+          <div class="project-filters" id="project-filters"></div>
+        </div>
+        <div class="projects" id="projects-list"></div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <p class="section-label"><span>04</span>Experience</p>
+      <div class="section-content">
+        <div class="section-heading">
+          <h2>Experience</h2>
+        </div>
+        <div class="timeline" id="experience-list"></div>
+      </div>
+    </section>
+
+    <!-- Credentials -->
+    <section class="section" id="credentials">
+      <p class="section-label"><span>05</span>Credentials</p>
+      <div class="section-content">
+        <div class="section-heading">
+          <h2>Education &amp; recognition</h2>
+        </div>
+        <div class="timeline" id="education-list"></div>
+        <div class="credential-grid">
+          <div>
+            <h3>Training</h3>
+            <ul id="training-list"></ul>
+          </div>
+          <div>
+            <h3>Awards</h3>
+            <ul id="awards-list"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+    <div class="container contact-inner">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Let's <em>work</em> together.</h2>
+      </div>
+      <div class="contact-actions">
+        <a class="button button-light" id="contact-email" href="#">Send an email <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Portfolio</span>
+      <span>Built with a JSON-driven template.</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
