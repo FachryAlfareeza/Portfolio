@@ -1,0 +1,110 @@
+{
+  "profile": {
+    "name": "Muhammad Fachry Alfareeza",
+    "headline": "Software, data, and applied AI.",
+    "tagline": "Information Engineering student at Universitas Gadjah Mada, building things that put those to practical use.",
+    "availability": "Open to software, data, and applied AI work",
+    "location": "Yogyakarta, Indonesia",
+    "about": "I study Information Engineering at Universitas Gadjah Mada and build things that use data to make a decision easier. Lately that has meant a loan-assessment agent for small businesses, flood and landslide risk maps, air-quality pipelines, and an energy dashboard. I spent a semester on a funded exchange at Kırıkkale University in Türkiye.",
+    "email": "fachryalfareeza@gmail.com"
+  },
+  "social": [
+    { "label": "GitHub", "url": "https://github.com/FachryAlfareeza", "icon": "github" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/fachryalfareeza", "icon": "linkedin" }
+  ],
+  "skillGroups": [
+    { "name": "Programming", "items": ["Python", "TypeScript", "JavaScript", "C#", "Kotlin", "SQL / PLpgSQL"] },
+    { "name": "Web development", "items": ["React", "FastAPI", "REST APIs", "HTML", "CSS", "Git"] },
+    { "name": "Data & analytics", "items": ["Pandas", "NumPy", "scikit-learn", "statsmodels", "Data cleaning", "Exploratory analysis"] },
+    { "name": "Areas of interest", "items": ["Geospatial data / H3", "Applied AI", "Regression", "Dashboard development"] }
+  ],
+  "projects": [
+    {
+      "name": "WeBank-AI",
+      "track": "Software & AI",
+      "description": "Scores small-business micro-loans from daily cash flow. An event-driven banking agent with DSCR risk scoring, HMAC privacy proofs, prompt-injection defenses, and data-purging controls. Built for FinTechathon 2026.",
+      "tech": ["Python", "React", "FastAPI", "Qwen2.5"],
+      "repo": "https://github.com/FachryAlfareeza/WeBank-AI",
+      "featured": true
+    },
+    {
+      "name": "InaFlews",
+      "track": "Data & analytics",
+      "description": "Maps flood and landslide risk across Uber H3 cells. A geospatial dashboard mockup for spotting high-risk locations.",
+      "tech": ["TypeScript", "H3"],
+      "repo": "https://github.com/FachryAlfareeza/InaFlews",
+      "demo": "https://fachryalfareeza.github.io/InaFlews",
+      "featured": true
+    },
+    {
+      "name": "AITF_Web (Airen)",
+      "track": "Software & AI",
+      "description": "Reviews Indonesian government TOR and RAB documents against a two-stage screening checklist. A frontend-only wireframe that consumes AI-review output from a separate system and leaves the final verdict to a human reviewer.",
+      "tech": ["React", "TypeScript", "Vite", "Tailwind"],
+      "repo": "https://github.com/FachryAlfareeza/AITF_Web",
+      "featured": true
+    },
+    {
+      "name": "AirQuality_Report",
+      "track": "Data & analytics",
+      "description": "Cleans and merges data from several weather APIs into one dataset. A Python pipeline.",
+      "tech": ["Python", "API data", "Preprocessing"],
+      "repo": "https://github.com/FachryAlfareeza/AirQuality_Report"
+    },
+    {
+      "name": "IETO-Dashboard",
+      "track": "Data & analytics",
+      "description": "Compares renewable and non-renewable generation side by side. An energy monitoring dashboard mockup.",
+      "tech": ["TypeScript", "Data visualization"],
+      "repo": "https://github.com/FachryAlfareeza/IETO-Dashboard",
+      "demo": "https://fachryalfareeza.github.io/IETO-Dashboard/"
+    },
+    {
+      "name": "SolarWise",
+      "track": "Software & AI",
+      "description": "Finds where solar panels pay off and estimates the return. A climate-action web app concept.",
+      "tech": ["C#"],
+      "repo": "https://github.com/FachryAlfareeza/SolarWise"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Researcher",
+      "organization": "Artificial Intelligence Talent Factory (AITF)",
+      "date": "Aug 2026 — Present",
+      "description": "Collaborate on applying AI to real-world problems through team-based research and prototyping."
+    },
+    {
+      "title": "Lead Researcher",
+      "organization": "UGM Blockchain Club",
+      "date": "Nov 2025 — Present",
+      "description": "Research blockchain topics for club publications and contribute to national and international blockchain community engagement."
+    }
+  ],
+  "education": [
+    {
+      "title": "Bachelor of Engineering candidate, Information Engineering",
+      "organization": "Universitas Gadjah Mada · Yogyakarta, Indonesia",
+      "date": "Aug 2024 — Present",
+      "description": "Relevant coursework includes programming, algorithms and data structures, probability, discrete mathematics, calculus, and linear algebra."
+    },
+    {
+      "title": "Engineering exchange, Electric and Electronic Engineering",
+      "organization": "Kırıkkale University · Türkiye",
+      "date": "Feb 2026 — Jul 2026",
+      "description": "One-semester fully funded exchange through the Turkey International Exchange Scholarship."
+    }
+  ],
+  "training": [
+    "Associate Data Scientist + Python — Digital Talent Academy, Digital Talent Scholarship 2026 (31 hours)",
+    "DataCamp: Python data cleaning, exploratory data analysis, statistics, regression, dimensionality reduction, and data engineering (2025–2026)",
+    "QBronze and QCobalt — QWorld"
+  ],
+  "awards": [
+    "Bronze Medal — SEA Quantathon 2026",
+    "Finalist — Pekan Ilmiah Nasional, GFT Competition 2025",
+    "Silver Medal — Hong Kong International Science Olympiads 2024",
+    "Finalist — National Science Olympiad, Astronomy 2023",
+    "Bronze Medal — Geoweek UGM Earth Science Quiz 2023"
+  ]
+}
