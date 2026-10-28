@@ -34,7 +34,7 @@ function CredentialList({ title, items }: { title: string; items: string[] }) {
         {items.map((item) => (
           <li
             key={item}
-            className="border-b border-line py-2 text-[11px] leading-[1.55] text-muted dark:border-white/10 dark:text-white/60"
+            className="border-b border-line py-2 text-[12px] leading-[1.55] text-muted dark:border-white/10 dark:text-white/60"
           >
             {item}
           </li>

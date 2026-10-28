@@ -30,7 +30,7 @@ export function CvView({ data }: { data: PortfolioData }) {
           <p className="mt-1 text-[13px] text-muted dark:text-white/60">
             {profile.location} · {profile.email}
           </p>
-          <p className="mt-1 text-[11px] text-muted dark:text-white/40">
+          <p className="mt-1 text-[12px] text-muted dark:text-white/40">
             Working copy for pasting into CVs and portfolios. Edit{" "}
             <code className="font-mono">data.json</code> to update.
           </p>
@@ -50,7 +50,7 @@ export function CvView({ data }: { data: PortfolioData }) {
                 type="button"
                 aria-pressed={active}
                 onClick={() => setFormat(f.id)}
-                className={`min-h-[32px] rounded-xs border px-3 text-[11px] font-bold transition-colors ${
+                className={`min-h-[32px] rounded-xs border px-3 text-[12px] font-bold transition-colors ${
                   active
                     ? "border-blue-strong bg-blue-strong text-white dark:border-orange dark:bg-orange dark:text-night-900"
                     : "border-line text-muted hover:border-blue-strong hover:text-blue-strong dark:border-night-line dark:text-white/60 dark:hover:border-orange dark:hover:text-orange"
@@ -76,11 +76,11 @@ export function CvView({ data }: { data: PortfolioData }) {
               </span>
             </h3>
             <p className="mt-1 text-[13px] leading-[1.7]">{p.description}</p>
-            <p className="mt-1 font-mono text-[11px] text-muted dark:text-white/50">
+            <p className="mt-1 font-mono text-[12px] text-muted dark:text-white/50">
               Tech: {p.tech.join(", ")}
             </p>
             {(p.repo || p.demo) && (
-              <p className="mt-1 font-mono text-[11px] text-muted dark:text-white/50">
+              <p className="mt-1 font-mono text-[12px] text-muted dark:text-white/50">
                 {p.repo && <span className="mr-3">Repo: {p.repo}</span>}
                 {p.demo && <span>Demo: {p.demo}</span>}
               </p>
@@ -145,7 +145,7 @@ function Section({
   return (
     <section className="mb-10">
       <div className="mb-3 flex items-center justify-between gap-4 border-b border-line pb-2 dark:border-night-line">
-        <h2 className="font-mono text-[11px] uppercase tracking-[0.12em] text-blue-strong dark:text-orange">
+        <h2 className="font-mono text-[12px] uppercase tracking-[0.12em] text-blue-strong dark:text-orange">
           {title}
         </h2>
         <CopyButton getText={copyAll} label={`Copy all ${title.toLowerCase()}`} className="print:hidden" />
@@ -181,7 +181,7 @@ function TimelineBody({ entry }: { entry: { title: string; organization: string;
           — {entry.organization}
         </span>
       </h3>
-      <p className="mt-0.5 font-mono text-[11px] text-muted dark:text-white/50">
+      <p className="mt-0.5 font-mono text-[12px] text-muted dark:text-white/50">
         {entry.date}
       </p>
       <p className="mt-1 text-[13px] leading-[1.7]">{entry.description}</p>

@@ -21,7 +21,7 @@ export function Skills({ groups }: { groups: SkillGroup[] }) {
               {group.items.map((skill) => (
                 <span
                   key={skill}
-                  className="rounded-xs bg-panel px-2 py-1 text-[11px] text-[#44556a] dark:bg-white/10 dark:text-white/70"
+                  className="rounded-xs bg-panel px-2 py-1 text-[12px] text-[#44556a] dark:bg-white/10 dark:text-white/70"
                 >
                   {skill}
                 </span>

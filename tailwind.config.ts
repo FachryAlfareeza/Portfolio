@@ -45,8 +45,9 @@ const config: Config = {
         mono: ["var(--font-dm-mono)", "monospace"],
       },
       fontSize: {
-        // micro label size used across eyebrows, section labels, kickers
-        micro: ["10px", { lineHeight: "1.4", letterSpacing: "0.08em" }],
+        // micro label size used across eyebrows, section labels, kickers.
+        // Floored at 12px for readability/accessibility (was 10px).
+        micro: ["12px", { lineHeight: "1.4", letterSpacing: "0.08em" }],
       },
       letterSpacing: {
         tightest: "-0.065em",

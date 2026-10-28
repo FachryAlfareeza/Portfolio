@@ -77,7 +77,7 @@ export function Hero({ profile }: { profile: Profile }) {
         className="relative min-h-[355px] overflow-hidden bg-blue-deep p-[25px_27px] text-[#eaf3fb] shadow-card dark:bg-night-700 dark:text-[#F4EFEA] dark:shadow-[18px_18px_0_rgba(244,162,97,0.1)] max-[800px]:max-w-[520px]"
       >
         <span className="pointer-events-none absolute -right-[155px] -top-[115px] h-[280px] w-[280px] rounded-full border border-blue/40 shadow-[0_0_0_27px_rgba(137,207,240,0.07),0_0_0_55px_rgba(137,207,240,0.04)] dark:border-orange/30 dark:shadow-[0_0_0_27px_rgba(244,162,97,0.05),0_0_0_55px_rgba(244,162,97,0.03)]" />
-        <div className="flex justify-between font-mono text-[9px] tracking-[0.08em] text-white/60">
+        <div className="flex justify-between font-mono text-[12px] tracking-[0.08em] text-white/60">
           <span>PORTFOLIO</span>
           <span className="text-[20px] text-blue dark:text-orange">◍</span>
         </div>
@@ -88,10 +88,10 @@ export function Hero({ profile }: { profile: Profile }) {
               key={item.number}
               className="flex items-start gap-[17px] border-b border-white/15 py-[14px]"
             >
-              <span className="pt-1 font-mono text-[9px] tracking-[0.08em] text-blue dark:text-orange">
+              <span className="pt-1 font-mono text-[12px] tracking-[0.08em] text-blue dark:text-orange">
                 {item.number}
               </span>
-              <p className="m-0 text-[11px] leading-[1.55] text-white/65">
+              <p className="m-0 text-[12px] leading-[1.55] text-white/65">
                 <strong className="block text-[13px] font-semibold text-white">
                   {item.title}
                 </strong>
@@ -101,7 +101,7 @@ export function Hero({ profile }: { profile: Profile }) {
           ))}
         </div>
 
-        <div className="flex justify-between pt-3 font-mono text-[9px] tracking-[0.08em] text-white/60">
+        <div className="flex justify-between pt-3 font-mono text-[12px] tracking-[0.08em] text-white/60">
           <span>BUILD</span>
           <span>EXPLORE</span>
         </div>

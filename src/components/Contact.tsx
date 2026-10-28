@@ -13,7 +13,7 @@ export function Contact({ profile }: { profile: Profile }) {
     >
       <Container className="grid grid-cols-2 items-start gap-10 max-[800px]:grid-cols-1">
         <div>
-          <p className="font-mono text-[9px] tracking-[0.08em] text-orange">
+          <p className="font-mono text-[12px] tracking-[0.08em] text-orange">
             Contact
           </p>
           <h2 className="mt-3 text-[clamp(34px,5vw,54px)] leading-[1.1]">

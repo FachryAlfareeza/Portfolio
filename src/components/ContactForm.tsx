@@ -60,17 +60,17 @@ export function ContactForm() {
         className="absolute left-[-9999px] h-0 w-0 opacity-0"
       />
 
-      <label className="flex flex-col gap-1 text-[11px] font-bold tracking-[0.02em] text-white/70">
+      <label className="flex flex-col gap-1 text-[12px] font-bold tracking-[0.02em] text-white/70">
         Name
         <input name="name" type="text" required className={fieldClass} />
       </label>
 
-      <label className="flex flex-col gap-1 text-[11px] font-bold tracking-[0.02em] text-white/70">
+      <label className="flex flex-col gap-1 text-[12px] font-bold tracking-[0.02em] text-white/70">
         Email
         <input name="email" type="email" required className={fieldClass} />
       </label>
 
-      <label className="flex flex-col gap-1 text-[11px] font-bold tracking-[0.02em] text-white/70">
+      <label className="flex flex-col gap-1 text-[12px] font-bold tracking-[0.02em] text-white/70">
         Message
         <textarea
           name="message"
@@ -88,7 +88,7 @@ export function ContactForm() {
         {status === "sending" ? "Sending…" : "Send message"}
       </button>
 
-      <p aria-live="polite" className="min-h-[18px] text-[11px]">
+      <p aria-live="polite" className="min-h-[18px] text-[12px]">
         {status === "sent" && (
           <span className="text-orange">Thanks, your message is on its way.</span>
         )}

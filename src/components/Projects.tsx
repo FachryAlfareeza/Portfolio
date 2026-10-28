@@ -27,7 +27,7 @@ export function Projects({ projects }: { projects: Project[] }) {
                 type="button"
                 aria-pressed={pressed}
                 onClick={() => setActive(filter)}
-                className={`min-h-[36px] rounded-xs border px-[10px] text-[10px] transition-colors ${
+                className={`min-h-[36px] rounded-xs border px-[10px] text-[12px] transition-colors ${
                   pressed
                     ? "border-blue-strong bg-blue-strong text-white dark:border-orange dark:bg-orange dark:text-night-900"
                     : "border-line text-muted hover:border-blue-strong hover:text-blue-strong dark:border-white/15 dark:text-white/60 dark:hover:border-orange dark:hover:text-orange"
@@ -51,11 +51,11 @@ export function Projects({ projects }: { projects: Project[] }) {
             } max-[600px]:min-h-[235px]`}
           >
             <div className="flex justify-between gap-3">
-              <span className="font-mono text-[9px] uppercase tracking-[0.08em] text-blue-strong dark:text-orange">
+              <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-blue-strong dark:text-orange">
                 {project.track}
               </span>
               {project.featured && (
-                <span className="rounded-full bg-blue-strong px-2 py-[2px] font-mono text-[9px] uppercase tracking-[0.08em] text-white dark:bg-orange dark:text-night-900">
+                <span className="rounded-full bg-blue-strong px-2 py-[2px] font-mono text-[12px] uppercase tracking-[0.08em] text-white dark:bg-orange dark:text-night-900">
                   Featured
                 </span>
               )}
@@ -72,14 +72,14 @@ export function Projects({ projects }: { projects: Project[] }) {
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="bg-black/[0.04] px-[7px] py-1 font-mono text-[9px] text-[#44556a] dark:bg-white/10 dark:text-white/60"
+                  className="bg-black/[0.04] px-[7px] py-1 font-mono text-[12px] text-[#44556a] dark:bg-white/10 dark:text-white/60"
                 >
                   {t}
                 </span>
               ))}
             </div>
 
-            <div className="mt-auto flex gap-4 pt-[11px] text-[11px] font-bold text-blue-strong dark:text-orange">
+            <div className="mt-auto flex gap-4 pt-[11px] text-[12px] font-bold text-blue-strong dark:text-orange">
               {project.repo && (
                 <a
                   href={project.repo}

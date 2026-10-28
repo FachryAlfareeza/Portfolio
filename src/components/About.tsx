@@ -24,7 +24,7 @@ export function About({
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-xs border border-line px-[11px] text-[11px] font-bold transition-colors hover:border-blue-strong hover:text-blue-strong dark:border-white/15 dark:hover:border-orange dark:hover:text-orange"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-xs border border-line px-[11px] text-[12px] font-bold transition-colors hover:border-blue-strong hover:text-blue-strong dark:border-white/15 dark:hover:border-orange dark:hover:text-orange"
           >
             <SocialGlyph icon={item.icon} className="h-4 w-4" />
             {item.label}
