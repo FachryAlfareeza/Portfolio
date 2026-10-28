@@ -1,0 +1,17 @@
+<svg width="264" height="232" viewBox="0 0 264 232" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    PLACEHOLDER favicon (same shape as public/brand/logomark.svg).
+    Replace this file with the real mark. Next.js serves it automatically as
+    the site icon. The media query makes it follow the OS color scheme:
+    brand blue by default, brand orange in dark mode.
+  -->
+  <style>
+    .mark { fill: #2176AE; }
+    @media (prefers-color-scheme: dark) { .mark { fill: #F4A261; } }
+  </style>
+  <path
+    class="mark"
+    d="M132 36c-20 0-36 16-36 36 0 14 8 26 19 32-24 5-43 26-45 52a4 4 0 0 0 4 4h116a4 4 0 0 0 4-4c-2-26-21-47-45-52 11-6 19-18 19-32 0-20-16-36-36-36Zm0 16c11 0 20 9 20 20s-9 20-20 20-20-9-20-20 9-20 20-20Z"
+  />
+  <circle class="mark" cx="132" cy="178" r="10" opacity="0.5" />
+</svg>

@@ -8,6 +8,8 @@ export interface Profile {
   tagline: string;
   availability: string;
   location: string;
+  /** IANA timezone (e.g. "Asia/Jakarta") used for the live local time in the hero. */
+  timezone: string;
   about: string;
   email: string;
 }

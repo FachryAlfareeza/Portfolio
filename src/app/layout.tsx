@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope, DM_Mono } from "next/font/google";
 import { portfolio } from "@/content";
 import "./globals.css";
@@ -17,10 +17,31 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
+const siteTitle = `${portfolio.profile.name} | Software and Data`;
+const siteDescription = `${portfolio.profile.headline} ${portfolio.profile.tagline}`;
+
 export const metadata: Metadata = {
-  title: `${portfolio.profile.name} | Software and Data`,
-  description:
-    "Portfolio of Muhammad Fachry Alfareeza — software engineering, data analysis, and applied AI.",
+  title: siteTitle,
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    title: siteTitle,
+    description: siteDescription,
+    siteName: portfolio.profile.name,
+  },
+  twitter: {
+    card: "summary",
+    title: siteTitle,
+    description: siteDescription,
+  },
+};
+
+// Browser UI color follows the active color scheme.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FDFDFD" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A0B" },
+  ],
 };
 
 // Runs before paint to set the theme class, preventing a flash of the wrong theme.

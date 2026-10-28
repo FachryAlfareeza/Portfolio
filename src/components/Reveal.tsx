@@ -1,9 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
-// Fades + lifts children into view on scroll. Respects prefers-reduced-motion:
-// when reduced motion is requested, content renders immediately with no animation.
+type Phase = "ssr" | "hidden" | "shown";
+
+// Fades + lifts children into view as they enter the viewport.
+//
+// Progressive enhancement: the server render has NO hidden state, so content
+// is visible without JavaScript. On mount (before first paint) we hide the
+// element, then an IntersectionObserver reveals it. With prefers-reduced-motion
+// the element is never hidden and nothing animates.
 export function Reveal({
   children,
   className = "",
@@ -16,48 +22,46 @@ export function Reveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
-  const [reduced, setReduced] = useState(false);
+  const [phase, setPhase] = useState<Phase>("ssr");
 
-  useEffect(() => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) {
-      setReduced(true);
-      setVisible(true);
-      return;
-    }
-
+  useLayoutEffect(() => {
     const node = ref.current;
     if (!node) return;
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return; // stay in "ssr" phase: visible, no transition classes
+    }
+
+    setPhase("hidden");
+
+    // threshold 0 + a bottom inset: fires as soon as any part enters the
+    // viewport, so very tall sections can never get stuck hidden.
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
-            setVisible(true);
+            setPhase("shown");
             observer.unobserve(entry.target);
           }
-        });
+        }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" }
     );
-
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
-  const motionClass = reduced
-    ? ""
-    : `transition-[opacity,transform] duration-700 ease-out will-change-[opacity,transform] ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-      }`;
+  const motionClass =
+    phase === "ssr"
+      ? ""
+      : `transition-[opacity,transform] duration-700 ease-out ${
+          phase === "shown" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`;
 
   return (
     <Tag
       ref={ref as never}
-      style={delay && !reduced ? { transitionDelay: `${delay}ms` } : undefined}
+      style={delay && phase !== "ssr" ? { transitionDelay: `${delay}ms` } : undefined}
       className={`${motionClass} ${className}`}
     >
       {children}

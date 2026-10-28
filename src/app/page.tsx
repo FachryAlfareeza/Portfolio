@@ -12,6 +12,8 @@ import { Contact } from "@/components/Contact";
 import { Container } from "@/components/Container";
 import { SectionLabel } from "@/components/SectionLabel";
 import { Reveal } from "@/components/Reveal";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { BackToTop } from "@/components/BackToTop";
 
 export default function Home() {
   const {
@@ -34,9 +36,11 @@ export default function Home() {
         Skip to content
       </a>
 
+      <ScrollProgress />
       <Header />
 
-      <main id="top">
+      {/* tabIndex=-1: programmatic focus target for "Back to top" (not a tab stop). */}
+      <main id="top" tabIndex={-1} className="outline-none">
         <Hero profile={profile} />
 
         <Section id="about" index="01" label="About">
@@ -74,6 +78,7 @@ export default function Home() {
 
       <Contact profile={profile} />
       <Footer />
+      <BackToTop />
     </>
   );
 }

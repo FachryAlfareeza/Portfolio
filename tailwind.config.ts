@@ -66,13 +66,22 @@ const config: Config = {
         container: "1100px",
       },
       keyframes: {
-        reveal: {
-          from: { opacity: "0", transform: "translateY(16px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+        // Project cards fade/lift in when the track filter changes.
+        "card-in": {
+          from: { opacity: "0", transform: "translateY(10px) scale(0.98)" },
+          to: { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        // Slow "breathing" of the hero card's orbit rings.
+        orbit: {
+          "0%, 100%": { transform: "scale(1)", opacity: "1" },
+          "50%": { transform: "scale(1.07)", opacity: "0.7" },
         },
       },
       animation: {
-        reveal: "reveal 0.6s ease forwards",
+        // `backwards` (not `both`): hold the "from" frame during the stagger
+        // delay, then release so the card's own hover transform still works.
+        "card-in": "card-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards",
+        orbit: "orbit 9s ease-in-out infinite",
       },
     },
   },

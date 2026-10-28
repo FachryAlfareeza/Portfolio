@@ -24,6 +24,20 @@ Other scripts:
 - `npm run start` — serve the production build locally
 - `npm run lint` — type-check and lint
 
+## Interactions and accessibility
+
+Everything below is dependency-free and respects `prefers-reduced-motion`.
+
+- **Scroll reveal** (`Reveal.tsx`): content is visible in the server HTML, so the page works without JavaScript. Below-the-fold blocks are hidden just before first paint and faded in by an `IntersectionObserver`.
+- **Navigation**: scroll-spy highlights the current section (`NavLinks.tsx`, `nav.ts`); a mobile menu (`MobileNav.tsx`) replaces the desktop links under 600px. Section ids live in `nav.ts`.
+- **Scroll progress bar** and a **back-to-top button** that returns keyboard focus to the page start.
+- **Live local time** in the hero, driven by `profile.timezone` in `data.json` (an IANA name like `Asia/Jakarta`).
+- **Project filter** replays a staggered card animation and announces results to screen readers.
+- **Contact form**: inline validation, character counter, request timeout, and a mailto fallback when sending fails. "Copy email" sits next to the email button.
+- **Theme**: follows the OS until you pick a theme with the toggle; your choice is stored in `localStorage`.
+- **Keyboard focus** uses a visible 2px ring (blue on light, orange on dark and on the contact panel).
+- **Site files**: `src/app/icon.svg` (favicon, placeholder), `not-found.tsx` (404), `robots.ts` (blocks `/cv` and `/api/`).
+
 ## Update content
 
 All page content comes from `src/content/data.json`: profile, social links, grouped skills, projects, experience, education, training, and awards. Types live in `src/content/types.ts`, so edits are type-checked on build.

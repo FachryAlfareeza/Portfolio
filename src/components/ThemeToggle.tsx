@@ -14,10 +14,27 @@ function applyTheme(theme: Theme) {
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme | null>(null);
 
-  // Read the theme the no-flash script already resolved on the html element.
+  // Read the theme the no-flash script already resolved on the html element,
+  // and follow OS-level changes until the user picks a theme explicitly.
   useEffect(() => {
     const isDark = document.documentElement.classList.contains("dark");
     setTheme(isDark ? "dark" : "light");
+
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = (event: MediaQueryListEvent) => {
+      let stored: string | null = null;
+      try {
+        stored = localStorage.getItem("theme");
+      } catch {
+        /* storage unavailable: treat as no stored preference */
+      }
+      if (stored) return; // an explicit choice always wins
+      const next: Theme = event.matches ? "dark" : "light";
+      setTheme(next);
+      applyTheme(next);
+    };
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
   }, []);
 
   const toggle = () => {

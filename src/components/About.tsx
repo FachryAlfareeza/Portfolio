@@ -24,11 +24,11 @@ export function About({
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-xs border border-line px-[11px] text-[12px] font-bold transition-colors hover:border-blue-strong hover:text-blue-strong dark:border-white/15 dark:hover:border-orange dark:hover:text-orange"
+            className="group inline-flex min-h-[44px] items-center gap-2 rounded-xs border border-line px-[11px] text-[12px] font-bold transition-colors hover:border-blue-strong hover:text-blue-strong dark:border-white/15 dark:hover:border-orange dark:hover:text-orange"
           >
             <SocialGlyph icon={item.icon} className="h-4 w-4" />
             {item.label}
-            <ArrowUpRight className="h-3 w-3 opacity-70" />
+            <ArrowUpRight className="h-3 w-3 opacity-70 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </a>
         ))}
       </div>

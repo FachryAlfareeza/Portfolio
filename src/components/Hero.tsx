@@ -1,6 +1,7 @@
 import { Container } from "./Container";
 import { ArrowUpRight, DownloadIcon } from "./icons";
 import { Reveal } from "./Reveal";
+import { LocalTime } from "./LocalTime";
 import type { Profile } from "@/content";
 
 const CV_PATH = "/assets/Fachry-Alfareeza-ATS-CV.pdf";
@@ -26,7 +27,8 @@ const focusItems = [
 export function Hero({ profile }: { profile: Profile }) {
   return (
     <Container className="grid min-h-[620px] grid-cols-[1.15fr_0.85fr] items-center gap-[9%] pb-28 pt-[126px] max-[800px]:min-h-0 max-[800px]:grid-cols-1 max-[800px]:gap-10 max-[800px]:pt-[86px] max-[600px]:pb-[86px] max-[600px]:pt-[72px]">
-      <Reveal className="max-w-[610px]">
+      <div className="max-w-[610px]">
+        <Reveal>
         <p className="mb-[22px] flex items-center gap-[10px] font-mono text-micro font-medium text-blue-strong dark:text-orange">
           <span
             aria-hidden="true"
@@ -35,21 +37,30 @@ export function Hero({ profile }: { profile: Profile }) {
           {profile.availability}
         </p>
 
+        </Reveal>
+
+        <Reveal delay={80}>
         <h1 className="mb-5 text-[clamp(43px,6.1vw,74px)] font-bold leading-[1.06] tracking-tightest">
           {profile.headline}
         </h1>
 
+        </Reveal>
+
+        <Reveal delay={160}>
         <p className="max-w-[500px] text-[16px] leading-[1.8] text-muted dark:text-white/60">
           {profile.tagline}
         </p>
 
+        </Reveal>
+
+        <Reveal delay={240}>
         <div className="mt-[30px] flex flex-wrap items-center gap-3">
           <a
             href={`mailto:${profile.email}`}
-            className="inline-flex min-h-[47px] items-center gap-[17px] rounded-sm2 bg-blue-strong px-[18px] text-[12px] font-bold text-white transition-[transform,background] duration-200 hover:-translate-y-0.5 hover:bg-blue-deep dark:bg-orange dark:text-night-900 dark:hover:bg-orange-strong"
+            className="group inline-flex min-h-[47px] items-center gap-[17px] rounded-sm2 bg-blue-strong px-[18px] text-[12px] font-bold text-white transition-[transform,background] duration-200 hover:-translate-y-0.5 hover:bg-blue-deep dark:bg-orange dark:text-night-900 dark:hover:bg-orange-strong"
           >
             Email me
-            <ArrowUpRight className="h-3.5 w-3.5" />
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </a>
           <a
             href="#projects"
@@ -67,16 +78,22 @@ export function Hero({ profile }: { profile: Profile }) {
           </a>
         </div>
 
+        </Reveal>
+
+        <Reveal delay={320}>
         <p className="mt-[42px] font-mono text-micro tracking-[0.04em] text-muted dark:text-white/50">
           {profile.location}
+          <LocalTime timeZone={profile.timezone} />
         </p>
-      </Reveal>
+        </Reveal>
+      </div>
 
+      <Reveal delay={200}>
       <aside
         aria-hidden="true"
         className="relative min-h-[355px] overflow-hidden bg-blue-deep p-[25px_27px] text-[#eaf3fb] shadow-card dark:bg-night-700 dark:text-[#F4EFEA] dark:shadow-[18px_18px_0_rgba(244,162,97,0.1)] max-[800px]:max-w-[520px]"
       >
-        <span className="pointer-events-none absolute -right-[155px] -top-[115px] h-[280px] w-[280px] rounded-full border border-blue/40 shadow-[0_0_0_27px_rgba(137,207,240,0.07),0_0_0_55px_rgba(137,207,240,0.04)] dark:border-orange/30 dark:shadow-[0_0_0_27px_rgba(244,162,97,0.05),0_0_0_55px_rgba(244,162,97,0.03)]" />
+        <span className="pointer-events-none absolute -right-[155px] animate-orbit -top-[115px] h-[280px] w-[280px] rounded-full border border-blue/40 shadow-[0_0_0_27px_rgba(137,207,240,0.07),0_0_0_55px_rgba(137,207,240,0.04)] dark:border-orange/30 dark:shadow-[0_0_0_27px_rgba(244,162,97,0.05),0_0_0_55px_rgba(244,162,97,0.03)]" />
         <div className="flex justify-between font-mono text-[12px] tracking-[0.08em] text-white/60">
           <span>PORTFOLIO</span>
           <span className="text-[20px] text-blue dark:text-orange">◍</span>
@@ -106,6 +123,7 @@ export function Hero({ profile }: { profile: Profile }) {
           <span>EXPLORE</span>
         </div>
       </aside>
+      </Reveal>
     </Container>
   );
 }

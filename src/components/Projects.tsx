@@ -40,11 +40,20 @@ export function Projects({ projects }: { projects: Project[] }) {
         </div>
       </div>
 
+      {/* Announce filter results to assistive tech. */}
+      <p role="status" aria-live="polite" className="sr-only">
+        Showing {shown.length} of {projects.length} projects
+        {active === "All" ? "" : ` in ${active}`}
+      </p>
+
       <div className="grid grid-cols-2 gap-[14px] max-[600px]:grid-cols-1">
-        {shown.map((project) => (
+        {shown.map((project, index) => (
           <article
-            key={project.name}
-            className={`flex min-h-[255px] flex-col border p-[22px_23px] transition-[transform,border-color] duration-200 hover:-translate-y-[3px] ${
+            // Including `active` in the key remounts cards on filter change,
+            // which replays the entrance animation.
+            key={`${active}-${project.name}`}
+            style={{ animationDelay: `${index * 70}ms` }}
+            className={`animate-card-in flex min-h-[255px] flex-col border p-[22px_23px] transition-[transform,border-color] duration-200 hover:-translate-y-[3px] ${
               project.featured
                 ? "border-blue-strong bg-blue/15 hover:border-blue-deep dark:border-orange dark:bg-orange/15 dark:hover:border-orange-strong"
                 : "border-line bg-white hover:border-blue/60 dark:border-night-line dark:bg-night-800 dark:hover:border-orange/40"

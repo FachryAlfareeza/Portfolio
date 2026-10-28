@@ -1,5 +1,6 @@
 import { Container } from "./Container";
 import { ContactForm } from "./ContactForm";
+import { CopyButton } from "./CopyButton";
 import { DownloadIcon } from "./icons";
 import type { Profile } from "@/content";
 
@@ -9,7 +10,7 @@ export function Contact({ profile }: { profile: Profile }) {
   return (
     <section
       id="contact"
-      className="bg-blue-deep py-20 text-[#eaf3fb] dark:bg-night-800 dark:text-[#F4EFEA]"
+      className="contact-panel bg-blue-deep py-20 text-[#eaf3fb] dark:bg-night-800 dark:text-[#F4EFEA]"
     >
       <Container className="grid grid-cols-2 items-start gap-10 max-[800px]:grid-cols-1">
         <div>
@@ -34,10 +35,16 @@ export function Contact({ profile }: { profile: Profile }) {
               Download CV
               <DownloadIcon className="h-[15px] w-[15px]" />
             </a>
+            <CopyButton
+              tone="onDark"
+              label="Copy email"
+              className="min-h-[47px] text-[12px]"
+              text={profile.email}
+            />
           </div>
         </div>
 
-        <ContactForm />
+        <ContactForm fallbackEmail={profile.email} />
       </Container>
     </section>
   );

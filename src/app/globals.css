@@ -19,6 +19,18 @@
     text-decoration: none;
   }
 
+  /* Visible keyboard focus. Mouse clicks don't trigger :focus-visible. */
+  :focus-visible {
+    outline: 2px solid #2176ae;
+    outline-offset: 3px;
+  }
+  .dark :focus-visible {
+    outline-color: #f4a261;
+  }
+  /* The contact panel is blue in light mode, so use the orange accent there. */
+  .contact-panel :focus-visible {
+    outline-color: #f4a261;
+  }
 }
 
 @layer components {
