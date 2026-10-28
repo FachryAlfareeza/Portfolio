@@ -18,8 +18,19 @@ export function Logo({ showWordmark = true }: { showWordmark?: boolean }) {
         style={{ "--logomark-src": `url(${LOGOMARK_SRC})` } as CSSProperties}
       />
       {showWordmark && (
-        <span className="text-xl font-extrabold tracking-[-0.07em] text-ink transition-colors group-hover:text-blue-strong dark:text-[#F4EFEA] dark:group-hover:text-orange">
-          FachryAlfareeza<span className="text-blue-strong dark:text-orange">.</span>
+        <span className="text-xl font-extrabold tracking-[-0.07em]">
+          {/* "Fachry": neutral by default, flips to accent on hover.
+              Light: ink <-> blue.  Dark: white <-> orange. */}
+          <span className="text-ink transition-colors group-hover:text-blue-strong dark:text-[#F4EFEA] dark:group-hover:text-orange">
+            Fachry
+          </span>
+          {/* "Alfareeza": accent by default, flips to neutral on hover. */}
+          <span className="text-blue-strong transition-colors group-hover:text-ink dark:text-orange dark:group-hover:text-[#F4EFEA]">
+            Alfareeza
+          </span>
+          <span className="text-blue-strong transition-colors group-hover:text-ink dark:text-orange dark:group-hover:text-[#F4EFEA]">
+            .
+          </span>
         </span>
       )}
     </a>
