@@ -10,19 +10,32 @@
 # production
 /build
 
-# misc
-.DS_Store
-*.pem
+# environment files (contain secrets such as RESEND_API_KEY).
+# Only a committed .env.example (no real values) is allowed.
+.env
+.env.*
+!.env.example
 
-# debug
+# Vercel CLI project link
+.vercel
+
+# logs and caches
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# env files
-.env
-.env*.local
+.eslintcache
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# OS and misc
+.DS_Store
+Thumbs.db
+*.pem
+
+# Local-only: agent steering docs and the brand source kit (logo files, font zip).
+# Brand assets actually used by the site live in public/brand and src/app/icon.svg.
+.kiro/
+context/
