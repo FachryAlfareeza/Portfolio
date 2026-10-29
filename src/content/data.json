@@ -43,6 +43,7 @@
       "description": "Reviews Indonesian government TOR and RAB documents against a two-stage screening checklist. A frontend-only wireframe that consumes AI-review output from a separate system and leaves the final verdict to a human reviewer.",
       "tech": ["React", "TypeScript", "Vite", "Tailwind"],
       "repo": "https://github.com/FachryAlfareeza/AITF_Web",
+      "demo": "https://fachryalfareeza.github.io/AITF_Web",
       "featured": true
     },
     {
@@ -103,9 +104,10 @@
   ],
   "awards": [
     "Bronze Medal — SEA Quantathon 2026",
+    "Finalist — Pekan Ilmiah Nasional, GFT Competition 2026",
     "Finalist — Pekan Ilmiah Nasional, GFT Competition 2025",
     "Silver Medal — Hong Kong International Science Olympiads 2024",
-    "Finalist — National Science Olympiad, Astronomy 2023",
+    "Finalist — Olimpiade Sains Nasional, Astronomi 2023",
     "Bronze Medal — Geoweek UGM Earth Science Quiz 2023"
   ]
 }
