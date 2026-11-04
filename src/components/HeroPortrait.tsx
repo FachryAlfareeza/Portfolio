@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import Image from "next/image";
 import type { ProfilePhoto } from "@/content";
 
@@ -33,12 +33,27 @@ const outerPhotoStyle = (split: number): CSSProperties => ({
   clipPath: `inset(0 0 ${100 - split}% 0)`,
 });
 
-// Rotation: slow constant drift plus pointer-following on hover.
-// - Normal mode: 2 deg/sec drift (respects prefers-reduced-motion)
-const DRIFT_DEG_PER_SEC = 8;
-// - Hover mode: smooth follow toward pointer angle; when leaving, persist that angle
-//   and continue drift from there. 12 deg/s follow speed gives a gentle snap.
-const FOLLOW_DEG_PER_SEC = 12;
+// Rotation: a slow idle spin, replaced by pointer-following while hovered.
+// Speeds are in degrees per second / exponential easing rate.
+const IDLE_SPIN_DEG_PER_SEC = 6;
+const POINTER_FOLLOW_RATE = 10;
+
+// Keep the angle bounded so it can be rotated indefinitely without losing
+// floating-point precision.
+const normalizeAngle = (value: number) => {
+  let wrapped = value % 360;
+  if (wrapped >= 180) wrapped -= 360;
+  if (wrapped < -180) wrapped += 360;
+  return wrapped;
+};
+
+// Signed shortest angular distance from `from` to `to`, in [-180, 180].
+const shortestAngleDelta = (from: number, to: number) => {
+  let delta = (to - from) % 360;
+  if (delta > 180) delta -= 360;
+  if (delta < -180) delta += 360;
+  return delta;
+};
 
 // A cutout photo that "pops out" of a morphing, rotating blob.
 //
@@ -48,37 +63,13 @@ const FOLLOW_DEG_PER_SEC = 12;
 //   3. a copy on top, clipped to the area above the split line, so the head is
 //      never cut off by the blob
 //
-// Without JavaScript (or with reduced motion) --rot stays at 0 and the blob is
-// simply still.
+// The blob spins slowly on its own and morphs. While hovered, its rotation
+// follows the pointer's angle around the blob's center, so a still pointer
+// holds it still. Without JavaScript (or with reduced motion) --rot stays at 0
+// and the blob is simply still.
 export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [pointerAngleDeg, setPointerAngleDeg] = useState(0);
-  const [lastAngleDeg, setLastAngleDeg] = useState(0);
 
-  // Track mouse position relative to the root element
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-
-    const handleMouseMove = (e: PointerEvent) => {
-      const rect = root.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2; // center-relative
-      const y = e.clientY - rect.top - rect.height / 2; // center-relative
-      const angle = Math.atan2(-y, x) * (180 / Math.PI); // invert Y for screen coords
-      setPointerAngleDeg(angle);
-      setIsHovered(true);
-      setLastAngleDeg(angle);
-    };
-
-    root.addEventListener("pointermove", handleMouseMove as EventListener);
-
-    return () => {
-      root.removeEventListener("pointermove", handleMouseMove);
-    };
-  }, []);
-
-  // Rotation: slow constant drift plus pointer-following on hover.
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
@@ -88,37 +79,84 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
       return;
     }
 
+    let hovering = false;
+    let targetAngle = 0;
+    let angle = 0;
+    let lastTime = performance.now();
     let frame = 0;
     let running = false;
-    let hoverAngle = isHovered ? pointerAngleDeg : lastAngleDeg;
 
-    const tick = () => {
-      // If hovering, smoothly follow the pointer angle
-      if (isHovered) {
-        const target = pointerAngleDeg;
-        // Move toward target by up to FOLLOW_DEG_PER_SEC per frame
-        const diff = (target - hoverAngle + 540) % 360 - 180; // shortest path
-        hoverAngle += diff * (1 / 60) * FOLLOW_DEG_PER_SEC; // approx per-frame
-        // Clamp to -180..180 range conceptually; just let it wrap naturally
+    const applyRotation = (value: number) => {
+      angle = normalizeAngle(value);
+      root.style.setProperty("--rot", `${angle.toFixed(2)}deg`);
+    };
+
+    // Pointer angle around the blob's center (not the wrapper's, since the blob
+    // sits at the bottom). 0deg = pointer to the right, 90deg = below.
+    const pointerAngle = (event: PointerEvent) => {
+      const rect = root.getBoundingClientRect();
+      const centerX = rect.width / 2;
+      const centerY = rect.height * ((BLOB_TOP + BLOB / 2) / ASPECT);
+      return (
+        Math.atan2(
+          event.clientY - rect.top - centerY,
+          event.clientX - rect.left - centerX
+        ) * (180 / Math.PI)
+      );
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      hovering = true;
+      targetAngle = pointerAngle(event);
+    };
+
+    const tick = (now: number) => {
+      // Clamp dt so a background tab or a long frame doesn't cause a jump.
+      const dt = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
+
+      if (hovering) {
+        // Ease toward the pointer along the shortest direction. Once the
+        // pointer stops moving, the target stops changing and the blob freezes.
+        const delta = shortestAngleDelta(angle, targetAngle);
+        if (Math.abs(delta) < 0.05) {
+          applyRotation(targetAngle);
+        } else {
+          applyRotation(angle + delta * (1 - Math.exp(-POINTER_FOLLOW_RATE * dt)));
+        }
       } else {
-        // Not hovering: use the last hover angle as base, then drift
-        const drift = (performance.now() / 1000) * DRIFT_DEG_PER_SEC;
-        hoverAngle += drift;
+        applyRotation(angle + IDLE_SPIN_DEG_PER_SEC * dt);
       }
-      setLastAngleDeg(hoverAngle);
-      root.style.setProperty("--rot", `${hoverAngle.toFixed(2)}deg`);
+
       frame = requestAnimationFrame(tick);
     };
 
     const start = () => {
       if (running) return;
       running = true;
+      lastTime = performance.now();
       frame = requestAnimationFrame(tick);
     };
     const stop = () => {
       running = false;
       cancelAnimationFrame(frame);
     };
+
+    const setHoverState = (hovered: boolean) => {
+      hovering = hovered;
+      root.style.setProperty("--blob-morph-play", hovered ? "paused" : "running");
+    };
+
+    const onPointerEnter = (event: PointerEvent) => {
+      targetAngle = pointerAngle(event);
+      setHoverState(true);
+    };
+    const onPointerLeaveWithState = () => setHoverState(false);
+
+    root.addEventListener("pointerenter", onPointerEnter);
+    root.addEventListener("pointermove", onPointerMove);
+    root.addEventListener("pointerleave", onPointerLeaveWithState);
+    root.addEventListener("pointercancel", onPointerLeaveWithState);
 
     // Only animate while the portrait is on screen.
     const observer = new IntersectionObserver(
@@ -130,8 +168,12 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
     return () => {
       observer.disconnect();
       stop();
+      root.removeEventListener("pointerenter", onPointerEnter);
+      root.removeEventListener("pointermove", onPointerMove);
+      root.removeEventListener("pointerleave", onPointerLeaveWithState);
+      root.removeEventListener("pointercancel", onPointerLeaveWithState);
     };
-  }, [isHovered, pointerAngleDeg, lastAngleDeg]);
+  }, []);
 
   const clamp = (n: number) => Math.min(100, Math.max(0, n));
 
@@ -148,10 +190,14 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
   return (
     <div
       ref={rootRef}
-      style={{ "--rot": "0deg", aspectRatio: `1 / ${ASPECT}` } as CSSProperties}
-      className="relative mx-auto w-full max-w-[460px]"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      style={
+        {
+          "--rot": "0deg",
+          "--blob-morph-play": "running",
+          aspectRatio: `1 / ${ASPECT}`,
+        } as CSSProperties
+      }
+      className="group relative mx-auto w-full max-w-[460px]"
     >
       {/* 1. Blob. Its bounds clip the photo below the split line. */}
       <div
@@ -161,8 +207,9 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
           height: `${(BLOB / ASPECT) * 100}%`,
           left: `${BLOB_LEFT * 100}%`,
           transform: "rotate(var(--rot))",
+          animationPlayState: "var(--blob-morph-play, running)",
         }}
-        className="absolute bottom-0 isolate overflow-hidden rounded-[32%_38%_30%_40%/38%_30%_40%_32%] bg-gradient-to-br from-blue-deep to-blue dark:from-night-700 dark:to-orange/80"
+        className="absolute bottom-0 isolate animate-blob-morph overflow-hidden rounded-[32%_38%_30%_40%/38%_30%_40%_32%] bg-gradient-to-br from-blue-deep to-blue dark:from-night-700 dark:to-orange/80"
       >
         {/* Eja ambigram logomark overlaid on the blob (centered, subtle) */}
         <span
