@@ -35,7 +35,7 @@ const outerPhotoStyle = (split: number): CSSProperties => ({
 
 // Rotation: slow constant drift plus pointer-following on hover.
 // - Normal mode: 2 deg/sec drift (respects prefers-reduced-motion)
-const DRIFT_DEG_PER_SEC = 2;
+const DRIFT_DEG_PER_SEC = 8;
 // - Hover mode: smooth follow toward pointer angle; when leaving, persist that angle
 //   and continue drift from there. 12 deg/s follow speed gives a gentle snap.
 const FOLLOW_DEG_PER_SEC = 12;
