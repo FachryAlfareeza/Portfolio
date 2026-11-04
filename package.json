@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "sync:github": "node scripts/sync-github.mjs"
+    "sync:github": "node --env-file-if-exists=.env.local scripts/sync-github.mjs"
   },
   "dependencies": {
     "next": "15.5.28",
