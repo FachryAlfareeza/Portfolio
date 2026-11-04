@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import Image from "next/image";
 import type { ProfilePhoto } from "@/content";
 
@@ -33,9 +33,12 @@ const outerPhotoStyle = (split: number): CSSProperties => ({
   clipPath: `inset(0 0 ${100 - split}% 0)`,
 });
 
-// Rotation: slow constant drift plus extra turn tied to scroll position.
+// Rotation: slow constant drift plus pointer-following on hover.
+// - Normal mode: 2 deg/sec drift (respects prefers-reduced-motion)
 const DRIFT_DEG_PER_SEC = 2;
-const SCROLL_DEG_PER_PX = 0.15;
+// - Hover mode: smooth follow toward pointer angle; when leaving, persist that angle
+//   and continue drift from there. 12 deg/s follow speed gives a gentle snap.
+const FOLLOW_DEG_PER_SEC = 12;
 
 // A cutout photo that "pops out" of a morphing, rotating blob.
 //
@@ -50,23 +53,63 @@ const SCROLL_DEG_PER_PX = 0.15;
 export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [pointerAngleDeg, setPointerAngleDeg] = useState(0);
+  const [lastAngleDeg, setLastAngleDeg] = useState(0);
 
+  // Track mouse position relative to the root element
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const handleMouseMove = (e: PointerEvent) => {
+      const rect = root.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2; // center-relative
+      const y = e.clientY - rect.top - rect.height / 2; // center-relative
+      const angle = Math.atan2(-y, x) * (180 / Math.PI); // invert Y for screen coords
+      setPointerAngleDeg(angle);
+      setIsHovered(true);
+      setLastAngleDeg(angle);
+    };
+
+    root.addEventListener("pointermove", handleMouseMove as EventListener);
+
+    return () => {
+      root.removeEventListener("pointermove", handleMouseMove);
+    };
+  }, []);
+
+  // Rotation: slow constant drift plus pointer-following on hover.
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // No animation when reduced motion is on; just keep rot at 0
+      root.style.setProperty("--rot", "0deg");
+      return;
+    }
 
     let frame = 0;
     let running = false;
+    let hoverAngle = isHovered ? pointerAngleDeg : lastAngleDeg;
 
     const tick = () => {
-      const deg =
-        (performance.now() / 1000) * DRIFT_DEG_PER_SEC *
-        (isHovered ? 1.4 : 1) + // slight speed up on hover
-        window.scrollY * SCROLL_DEG_PER_PX;
-      root.style.setProperty("--rot", `${deg.toFixed(2)}deg`);
+      // If hovering, smoothly follow the pointer angle
+      if (isHovered) {
+        const target = pointerAngleDeg;
+        // Move toward target by up to FOLLOW_DEG_PER_SEC per frame
+        const diff = (target - hoverAngle + 540) % 360 - 180; // shortest path
+        hoverAngle += diff * (1 / 60) * FOLLOW_DEG_PER_SEC; // approx per-frame
+        // Clamp to -180..180 range conceptually; just let it wrap naturally
+      } else {
+        // Not hovering: use the last hover angle as base, then drift
+        const drift = (performance.now() / 1000) * DRIFT_DEG_PER_SEC;
+        hoverAngle += drift;
+      }
+      setLastAngleDeg(hoverAngle);
+      root.style.setProperty("--rot", `${hoverAngle.toFixed(2)}deg`);
       frame = requestAnimationFrame(tick);
     };
+
     const start = () => {
       if (running) return;
       running = true;
@@ -88,7 +131,7 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
       observer.disconnect();
       stop();
     };
-  }, [isHovered]);
+  }, [isHovered, pointerAngleDeg, lastAngleDeg]);
 
   const clamp = (n: number) => Math.min(100, Math.max(0, n));
 
@@ -119,9 +162,9 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
           left: `${BLOB_LEFT * 100}%`,
           transform: "rotate(var(--rot))",
         }}
-        className="absolute bottom-0 isolate animate-blob-morph overflow-hidden rounded-[32%_38%_30%_40%/38%_30%_40%_32%] bg-gradient-to-br from-blue-deep to-blue dark:from-night-700 dark:to-orange/80 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group"
+        className="absolute bottom-0 isolate overflow-hidden rounded-[32%_38%_30%_40%/38%_30%_40%_32%] bg-gradient-to-br from-blue-deep to-blue dark:from-night-700 dark:to-orange/80"
       >
-        {/* Ambiguous Eja logomark overlaid on the blob */}
+        {/* Eja ambigram logomark overlaid on the blob (centered, subtle) */}
         <span
           aria-hidden="true"
           className="brand-logomark absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32%] max-w-[140px] opacity-10 transition-opacity duration-300 group-hover:opacity-15"

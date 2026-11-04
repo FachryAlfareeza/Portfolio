@@ -10,10 +10,12 @@
     "scroll-responsive nav hide",
     "marquee skills display"
   ],
-  "recent": [
+  "completed": [
     "added ambigram logomark to hero portrait blob",
-    "fixed scroll rotation strength (0.15 deg/px)",
-    "fixed hover speed multiplier (1.4x)",
-    "fixed logomark size (32% blob width, centered)"
-  ]
+    "hero portrait blob follows pointer on hover (smooth follow)",
+    "blob stays at last hover angle when pointer leaves",
+    "slow drift rotation (2 deg/s) when not hovering",
+    "reduced drift strength, smaller centered logomark"
+  ],
+  "notes": "HeroPortrait reimplemented cleanly: pointer-follow on hover, persists angle on leave, minimal logomark overlay (32% width, 10% opacity)"
 }
