@@ -60,10 +60,19 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
       pointerY: 0,
       hasPointer: false,
       hovered: false,
+      lastScrollY: window.scrollY,
+      scrollSpeed: 0, // smoothed scroll velocity, px/sec
     };
 
-    // Non-hover drift: rotate slowly, wobbling between ~2 and 8 deg/sec.
+    // Scroll velocity feeds the spin: 1 px/sec of scroll adds this many deg/sec.
+    const SCROLL_DEG_PER_PX_PER_SEC = 0.2;
+    // Cap so a fling doesn't turn into an unreadable blur.
+    const MAX_SCROLL_BOOST = 180;
+
+    // Base rate: self-driven drift, wobbling between ~2 and 8 deg/sec.
     const driftRate = (t: number) => 5 + 3 * Math.sin((t / 1000) * 0.4);
+    const scrollBoost = () =>
+      Math.min(state.scrollSpeed * SCROLL_DEG_PER_PX_PER_SEC, MAX_SCROLL_BOOST);
 
     const onEnter = () => {
       state.hovered = true;
@@ -90,6 +99,13 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
 
+      // Track how fast the page is scrolling (px/sec), smoothed so brief
+      // event gaps don't spike the value.
+      const y = window.scrollY;
+      const instantSpeed = Math.abs(y - state.lastScrollY) / dt;
+      state.lastScrollY = y;
+      state.scrollSpeed += (instantSpeed - state.scrollSpeed) * (1 - Math.exp(-dt * 6));
+
       if (state.hovered && state.hasPointer) {
         const rect = root.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
@@ -107,7 +123,8 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
         // Ease toward the pointer with exponential damping.
         state.angle += (state.target - state.angle) * (1 - Math.exp(-dt * 9));
       } else {
-        state.angle += driftRate(now) * dt;
+        // Self-driven rotation, sped up proportionally to scroll velocity.
+        state.angle += (driftRate(now) + scrollBoost()) * dt;
         state.target = state.angle;
       }
 
@@ -119,6 +136,7 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
       if (running) return;
       running = true;
       last = performance.now();
+      state.lastScrollY = window.scrollY;
       frame = requestAnimationFrame(tick);
     };
     const stop = () => {
