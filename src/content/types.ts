@@ -1,4 +1,22 @@
+export type Locale = "en" | "id";
+
 export type SocialIcon = "github" | "linkedin" | "email";
+
+export interface ProfilePhoto {
+  /** Public path to a transparent cutout (PNG/WebP/SVG), e.g. "/brand/profile.png". */
+  src: string;
+  /** Optional dark-mode cutout. Falls back to `src` when omitted. Keep the same 4:5 framing. */
+  srcDark?: string;
+  alt: string;
+  /**
+   * 0-100. Percent of the photo's height, measured from the top, above which
+   * the cutout "pops out" of the blob. Below this line the photo is clipped to
+   * the blob. Tune it to sit just above the shoulders.
+   */
+  split: number;
+  /** Optional split for the dark-mode photo. Falls back to `split`. */
+  splitDark?: number;
+}
 
 export interface Profile {
   name: string;
@@ -11,7 +29,11 @@ export interface Profile {
   /** IANA timezone (e.g. "Asia/Jakarta") used for the live local time in the hero. */
   timezone: string;
   about: string;
+  /** Multi-paragraph narrative shown when the user selects "Full story" in the About section. */
+  aboutLong?: string[];
   email: string;
+  /** Hero portrait: transparent cutout shown in front of the morphing blob. */
+  photo: ProfilePhoto;
 }
 
 export interface SocialLink {

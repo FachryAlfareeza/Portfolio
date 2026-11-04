@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, DM_Mono } from "next/font/google";
 import { portfolio } from "@/content";
+import { LanguageProvider } from "@/components/LanguageProvider";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -58,7 +59,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: noFlashTheme }} />
       </head>
       <body className="bg-paper text-ink transition-colors dark:bg-night-900 dark:text-[#F4EFEA]">
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

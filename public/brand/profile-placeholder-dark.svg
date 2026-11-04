@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" fill="none">
+  <!-- PLACEHOLDER dark-mode portrait. Replace with a transparent 4:5 cutout
+       (PNG/WebP) and update profile.photo.srcDark in src/content/data.json. -->
+  <g fill="#C9D3DE">
+    <circle cx="400" cy="290" r="140" />
+    <rect x="340" y="400" width="120" height="240" />
+    <path d="M110 1000C110 760 230 640 400 620C570 640 690 760 690 1000Z" />
+  </g>
+</svg>

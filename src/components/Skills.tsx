@@ -1,10 +1,16 @@
+"use client";
+
+import { useLanguage } from "./LanguageProvider";
 import type { SkillGroup } from "@/content";
 
-export function Skills({ groups }: { groups: SkillGroup[] }) {
+export function Skills({ groups: initialGroups }: { groups: SkillGroup[] }) {
+  const { data, ui } = useLanguage();
+  const groups = data.skillGroups ?? initialGroups;
+
   return (
     <>
       <div className="mb-6 flex items-end justify-between gap-[30px]">
-        <h2 className="text-[31px] tracking-tighter2">Toolbox</h2>
+        <h2 className="text-[31px] tracking-tighter2">{ui.skills.heading}</h2>
       </div>
       <div className="grid grid-cols-2 border-t border-line dark:border-white/10 max-[600px]:grid-cols-1">
         {groups.map((group, i) => (

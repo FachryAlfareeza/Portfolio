@@ -1,6 +1,18 @@
+"use client";
+
+import { useLanguage } from "./LanguageProvider";
 import type { TimelineEntry } from "@/content";
 
-export function Timeline({ items }: { items: TimelineEntry[] }) {
+export function Timeline({
+  items: initialItems,
+  source,
+}: {
+  items: TimelineEntry[];
+  source?: "experience" | "education";
+}) {
+  const { data } = useLanguage();
+  const items = source ? (data[source] ?? initialItems) : initialItems;
+
   return (
     <div className="border-t border-line dark:border-white/10">
       {items.map((item) => (

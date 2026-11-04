@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useLanguage } from "./LanguageProvider";
+import type { UiCopy } from "@/content/i18n";
 
 type Status = "idle" | "sending" | "sent" | "error";
 type FieldName = "name" | "email" | "message";
@@ -10,18 +12,24 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MESSAGE_MAX = 5000;
 const REQUEST_TIMEOUT_MS = 15_000;
 
-function validate(values: Record<FieldName, string>): FieldErrors {
+function validate(
+  values: Record<FieldName, string>,
+  errCopy: UiCopy["contact"]["form"]["errors"]
+): FieldErrors {
   const errors: FieldErrors = {};
-  if (!values.name.trim()) errors.name = "Please enter your name.";
-  if (!values.email.trim()) errors.email = "Please enter your email.";
-  else if (!EMAIL_RE.test(values.email.trim())) errors.email = "That email doesn't look right.";
-  if (!values.message.trim()) errors.message = "Please write a message.";
+  if (!values.name.trim()) errors.name = errCopy.nameRequired;
+  if (!values.email.trim()) errors.email = errCopy.emailRequired;
+  else if (!EMAIL_RE.test(values.email.trim())) errors.email = errCopy.emailInvalid;
+  if (!values.message.trim()) errors.message = errCopy.messageRequired;
   else if (values.message.length > MESSAGE_MAX)
-    errors.message = `Keep it under ${MESSAGE_MAX} characters.`;
+    errors.message = errCopy.messageMax(MESSAGE_MAX);
   return errors;
 }
 
 export function ContactForm({ fallbackEmail }: { fallbackEmail: string }) {
+  const { ui } = useLanguage();
+  const formCopy = ui.contact.form;
+
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
@@ -40,7 +48,7 @@ export function ContactForm({ fallbackEmail }: { fallbackEmail: string }) {
     };
 
     // Client-side validation first: inline errors + focus the first bad field.
-    const errors = validate(values);
+    const errors = validate(values, formCopy.errors);
     setFieldErrors(errors);
     const firstInvalid = (["name", "email", "message"] as const).find((f) => errors[f]);
     if (firstInvalid) {
@@ -77,10 +85,10 @@ export function ContactForm({ fallbackEmail }: { fallbackEmail: string }) {
       setStatus("error");
       setError(
         err instanceof DOMException && err.name === "AbortError"
-          ? "The request timed out."
+          ? formCopy.errors.timeout
           : err instanceof Error
             ? err.message
-            : "Something went wrong."
+            : formCopy.errors.generic
       );
     } finally {
       window.clearTimeout(timeout);
@@ -119,7 +127,7 @@ export function ContactForm({ fallbackEmail }: { fallbackEmail: string }) {
       />
 
       <label className={labelClass}>
-        Name
+        {formCopy.nameLabel}
         <input
           name="name"
           type="text"
@@ -132,7 +140,7 @@ export function ContactForm({ fallbackEmail }: { fallbackEmail: string }) {
       </label>
 
       <label className={labelClass}>
-        Email
+        {formCopy.emailLabel}
         <input
           name="email"
           type="email"
@@ -146,7 +154,7 @@ export function ContactForm({ fallbackEmail }: { fallbackEmail: string }) {
 
       <label className={labelClass}>
         <span className="flex items-baseline justify-between">
-          Message
+          {formCopy.messageLabel}
           <span
             className={`font-mono text-[12px] font-normal ${
               messageLength > MESSAGE_MAX ? "text-[#ffb4b4]" : "text-white/50"
@@ -171,16 +179,16 @@ export function ContactForm({ fallbackEmail }: { fallbackEmail: string }) {
         disabled={status === "sending"}
         className="inline-flex min-h-[47px] items-center justify-center rounded-sm2 bg-orange px-[18px] text-[12px] font-bold text-night-900 transition-[transform,background,opacity] duration-200 hover:-translate-y-0.5 hover:bg-orange-strong disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "sending" ? "Sending…" : "Send message"}
+        {status === "sending" ? formCopy.sending : formCopy.send}
       </button>
 
       <p aria-live="polite" className="min-h-[18px] text-[12px]">
         {status === "sent" && (
-          <span className="text-orange">Thanks, your message is on its way.</span>
+          <span className="text-orange">{formCopy.sent}</span>
         )}
         {status === "error" && (
           <span className="text-[#ffb4b4]">
-            {error} You can also email{" "}
+            {error} {formCopy.fallbackPrefix}{" "}
             <a className="underline underline-offset-2" href={`mailto:${fallbackEmail}`}>
               {fallbackEmail}
             </a>

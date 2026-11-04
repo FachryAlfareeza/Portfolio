@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLanguage } from "./LanguageProvider";
 
 // Live local time for the profile's timezone. Renders nothing on the server
 // and first client render so there is never a hydration mismatch.
 export function LocalTime({ timeZone }: { timeZone: string }) {
   const [label, setLabel] = useState<string | null>(null);
+  const { ui } = useLanguage();
 
   useEffect(() => {
     let formatter: Intl.DateTimeFormat;
@@ -44,7 +46,7 @@ export function LocalTime({ timeZone }: { timeZone: string }) {
       <span aria-hidden="true" className="px-2 opacity-50">
         ·
       </span>
-      <span className="sr-only">Local time: </span>
+      <span className="sr-only">{ui.hero.localTimeSr}</span>
       {label}
     </span>
   );

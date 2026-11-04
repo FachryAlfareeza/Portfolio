@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { playSuccess } from "@/lib/feedback";
 
 const TONES = {
   default:
@@ -13,6 +14,7 @@ export function CopyButton({
   getText,
   text,
   label = "Copy",
+  copiedLabel = "Copied ✓",
   className = "",
   tone = "default",
 }: {
@@ -21,6 +23,7 @@ export function CopyButton({
   /** Static text. Use this when rendering from a server component. */
   text?: string;
   label?: string;
+  copiedLabel?: string;
   className?: string;
   tone?: keyof typeof TONES;
 }) {
@@ -30,6 +33,7 @@ export function CopyButton({
   useEffect(() => () => window.clearTimeout(timer.current), []);
 
   function flash() {
+    playSuccess();
     setCopied(true);
     window.clearTimeout(timer.current);
     timer.current = window.setTimeout(() => setCopied(false), 1500);
@@ -63,7 +67,7 @@ export function CopyButton({
       onClick={handleCopy}
       className={`inline-flex min-h-[32px] items-center rounded-xs border px-3 text-[12px] font-bold transition-colors ${TONES[tone]} ${className}`}
     >
-      {copied ? "Copied ✓" : label}
+      {copied ? copiedLabel : label}
       <span role="status" aria-live="polite" className="sr-only">
         {copied ? "Copied to clipboard" : ""}
       </span>

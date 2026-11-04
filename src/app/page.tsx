@@ -43,11 +43,11 @@ export default function Home() {
       <main id="top" tabIndex={-1} className="outline-none">
         <Hero profile={profile} />
 
-        <Section id="about" index="01" label="About">
+        <Section id="about" index="01" label="About" labelKey="about">
           <About profile={profile} social={social} />
         </Section>
 
-        <Section id="skills" index="02" label="Skills">
+        <Section id="skills" index="02" label="Skills" labelKey="skills">
           <Skills groups={skillGroups} />
         </Section>
 
@@ -55,7 +55,9 @@ export default function Home() {
         <section id="projects" className="border-t border-line dark:border-white/10">
           <Container className="grid grid-cols-[190px_1fr] gap-[7%] py-20 pb-[90px] max-[800px]:grid-cols-[130px_1fr] max-[800px]:gap-[5%] max-[600px]:block max-[600px]:py-[52px]">
             <div className="max-[600px]:mb-5">
-              <SectionLabel index="03">Projects</SectionLabel>
+              <SectionLabel index="03" labelKey="projects">
+                Projects
+              </SectionLabel>
             </div>
             <Reveal className="min-w-0">
               <Projects projects={projects} />
@@ -63,11 +65,11 @@ export default function Home() {
           </Container>
         </section>
 
-        <Section id="experience" index="04" label="Experience">
-          <Timeline items={experience} />
+        <Section id="experience" index="04" label="Experience" labelKey="experience">
+          <Timeline items={experience} source="experience" />
         </Section>
 
-        <Section id="credentials" index="05" label="Credentials">
+        <Section id="credentials" index="05" label="Credentials" labelKey="credentials">
           <Credentials
             education={education}
             training={training}

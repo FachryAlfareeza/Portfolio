@@ -2,10 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUp } from "./icons";
+import { useLanguage } from "./LanguageProvider";
+import { playTick } from "@/lib/feedback";
 
 // Floating "back to top" button, shown after scrolling past the first screen.
 export function BackToTop() {
   const [visible, setVisible] = useState(false);
+  const { ui } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 700);
@@ -17,10 +20,11 @@ export function BackToTop() {
   return (
     <button
       type="button"
-      aria-label="Back to top"
+      aria-label={ui.controls.backToTop}
       // `inert` keeps the hidden button out of the tab order.
       inert={!visible}
       onClick={() => {
+        playTick();
         window.scrollTo({ top: 0 });
         // The button hides itself once at the top, which would drop keyboard
         // focus to <body>. Move focus to the page start so Tab continues from

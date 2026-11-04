@@ -7,7 +7,18 @@
     "location": "Yogyakarta, Indonesia",
     "timezone": "Asia/Jakarta",
     "about": "I study Information Engineering at Universitas Gadjah Mada and build things that use data to make a decision easier. Lately that has meant a loan-assessment agent for small businesses, flood and landslide risk maps, air-quality pipelines, and an energy dashboard. I spent a semester on a funded exchange at Kırıkkale University in Türkiye.",
-    "email": "fachryalfareeza@gmail.com"
+    "aboutLong": [
+      "I study Information Engineering at Universitas Gadjah Mada in Yogyakarta, where my coursework in algorithms, probability, discrete mathematics, and linear algebra meets practical software and data engineering. I like working on problems where messy real-world inputs—daily cash flows, multi-source weather feeds, or government procurement documents—need to be turned into clear, auditable decisions.",
+      "Outside the classroom, I conduct applied AI research at the Artificial Intelligence Talent Factory (AITF) and lead blockchain research at the UGM Blockchain Club. Many of my favorite projects started in competitions and research sprints, from building an event-driven micro-loan risk agent for FinTechathon 2026 and mapping flood risk across Uber H3 hexagonal cells, to earning a Bronze Medal at SEA Quantathon 2026 and competing as a national finalist in Pekan Ilmiah Nasional.",
+      "In 2026, I spent a fully funded exchange semester studying Electric and Electronic Engineering at Kırıkkale University in Türkiye. Living and studying abroad shaped how I collaborate across cultures and disciplines—a perspective captured in my 'Eja' personal mark, an ambigram designed to read the same from either angle."
+    ],
+    "email": "fachryalfareeza@gmail.com",
+    "photo": {
+      "src": "/assets/Me-2.png",
+      "srcDark": "/assets/Me-1.png",
+      "alt": "Portrait of Muhammad Fachry Alfareeza",
+      "split": 40
+    }
   },
   "social": [
     { "label": "GitHub", "url": "https://github.com/FachryAlfareeza", "icon": "github" },

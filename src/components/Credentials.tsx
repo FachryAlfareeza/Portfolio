@@ -1,26 +1,34 @@
+"use client";
+
 import { Timeline } from "./Timeline";
+import { useLanguage } from "./LanguageProvider";
 import type { TimelineEntry } from "@/content";
 
 export function Credentials({
-  education,
-  training,
-  awards,
+  education: initialEducation,
+  training: initialTraining,
+  awards: initialAwards,
 }: {
   education: TimelineEntry[];
   training: string[];
   awards: string[];
 }) {
+  const { data, ui } = useLanguage();
+  const education = data.education ?? initialEducation;
+  const training = data.training ?? initialTraining;
+  const awards = data.awards ?? initialAwards;
+
   return (
     <>
       <div className="mb-6 flex items-end justify-between gap-[30px]">
-        <h2 className="text-[31px] tracking-tighter2">Education &amp; recognition</h2>
+        <h2 className="text-[31px] tracking-tighter2">{ui.credentials.heading}</h2>
       </div>
 
       <Timeline items={education} />
 
       <div className="mt-9 grid grid-cols-2 gap-9 max-[600px]:grid-cols-1">
-        <CredentialList title="Training" items={training} />
-        <CredentialList title="Awards" items={awards} />
+        <CredentialList title={ui.credentials.trainingTitle} items={training} />
+        <CredentialList title={ui.credentials.awardsTitle} items={awards} />
       </div>
     </>
   );

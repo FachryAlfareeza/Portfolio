@@ -76,8 +76,17 @@ const config: Config = {
           "0%, 100%": { transform: "scale(1)", opacity: "1" },
           "50%": { transform: "scale(1.07)", opacity: "0.7" },
         },
+        // Square-ish irregular blob for the hero portrait: radii stay mostly
+        // within 26-40% so it reads as a soft square, not a circle.
+        "blob-morph": {
+          "0%, 100%": { borderRadius: "32% 38% 30% 40% / 38% 30% 40% 32%" },
+          "25%": { borderRadius: "40% 28% 38% 26% / 30% 40% 28% 38%" },
+          "50%": { borderRadius: "28% 40% 26% 38% / 40% 28% 38% 30%" },
+          "75%": { borderRadius: "38% 26% 40% 30% / 28% 38% 30% 40%" },
+        },
       },
       animation: {
+        "blob-morph": "blob-morph 14s ease-in-out infinite",
         // `backwards` (not `both`): hold the "from" frame during the stagger
         // delay, then release so the card's own hover transform still works.
         "card-in": "card-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards",

@@ -1,15 +1,17 @@
 "use client";
 
 import { NAV_LINKS, useActiveSection } from "./nav";
+import { useLanguage } from "./LanguageProvider";
 
 // Desktop primary navigation with scroll-spy highlight and animated underline.
 export function NavLinks() {
   const active = useActiveSection();
+  const { ui } = useLanguage();
 
   return (
     <nav
       aria-label="Primary"
-      className="ml-auto mr-10 flex gap-[34px] max-[800px]:mr-5 max-[800px]:gap-[18px] max-[600px]:hidden"
+      className="ml-auto mr-8 flex gap-[28px] max-[900px]:mr-4 max-[900px]:gap-[16px] max-[600px]:hidden"
     >
       {NAV_LINKS.map((link) => {
         const isActive = active === link.id;
@@ -24,7 +26,7 @@ export function NavLinks() {
                 : "text-muted after:scale-x-0 hover:text-blue-strong dark:text-white/60 dark:hover:text-orange"
             }`}
           >
-            {link.label}
+            {ui.nav[link.id]}
           </a>
         );
       })}

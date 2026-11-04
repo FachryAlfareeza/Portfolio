@@ -56,6 +56,9 @@ Two assets are placeholders to replace with the real mark:
 
 - `public/brand/logomark.svg`: header logomark. It is drawn through a CSS mask, so use a single solid shape; the color follows the theme.
 - `src/app/icon.svg`: the favicon.
+- `public/brand/profile-placeholder.svg` and `profile-placeholder-dark.svg`: the hero portraits for light and dark mode. Drop in transparent cutouts (PNG or WebP, 4:5, subject anchored to the bottom edge, same framing in both) and point `profile.photo.src` and `profile.photo.srcDark` in `data.json` at them. `srcDark` and `splitDark` are optional; without `srcDark` the light photo is used in both modes. The head pops out of a morphing blob; tune `profile.photo.split` (0-100, percent from the top) so the cut sits just above the shoulders. The blob drifts slowly and turns further as you scroll (`HeroPortrait.tsx`); both stop under `prefers-reduced-motion`.
+
+The hero's "focus card" (01 Software engineering, 02 Data & analytics, 03 Research) is parked as a commented-out block in `Hero.tsx` until a new home is picked.
 
 The source brand kit (logos, patterns, font) is kept locally in `context/` and is git-ignored.
 

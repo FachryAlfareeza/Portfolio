@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { CloseIcon, MenuIcon } from "./icons";
 import { NAV_LINKS, useActiveSection } from "./nav";
+import { useLanguage } from "./LanguageProvider";
 
 // Mobile menu (<=600px). The desktop nav is hidden at this width, so without
 // this component small screens would have no navigation at all.
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const active = useActiveSection();
+  const { ui } = useLanguage();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -47,7 +49,7 @@ export function MobileNav() {
         type="button"
         aria-expanded={open}
         aria-controls="mobile-menu"
-        aria-label={open ? "Close menu" : "Open menu"}
+        aria-label={open ? ui.nav.closeMenu : ui.nav.openMenu}
         onClick={() => setOpen((v) => !v)}
         className="inline-flex h-[44px] w-[44px] items-center justify-center rounded-sm2 border border-line text-muted transition-colors hover:border-blue-strong hover:text-blue-strong dark:border-white/15 dark:text-white/70 dark:hover:border-orange dark:hover:text-orange"
       >
@@ -76,7 +78,7 @@ export function MobileNav() {
                   : "text-ink dark:text-[#F4EFEA]"
               }`}
             >
-              {link.label}
+              {ui.nav[link.id]}
             </a>
           ))}
           <a
@@ -84,7 +86,7 @@ export function MobileNav() {
             onClick={() => setOpen(false)}
             className={`${linkClass} border-b-0 text-blue-strong dark:text-orange`}
           >
-            Get in touch
+            {ui.nav.getInTouch}
           </a>
         </nav>
       </div>

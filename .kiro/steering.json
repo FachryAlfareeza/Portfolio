@@ -1,0 +1,19 @@
+{
+  "project": "portfolio-nextjs",
+  "constraints": [
+    "zero-dep interactions",
+    "respect prefers-reduced-motion",
+    "single JSON source of truth for content",
+    "build must pass tsc and lint"
+  ],
+  "pending": [
+    "scroll-responsive nav hide",
+    "marquee skills display"
+  ],
+  "recent": [
+    "added ambigram logomark to hero portrait blob",
+    "fixed scroll rotation strength (0.15 deg/px)",
+    "fixed hover speed multiplier (1.4x)",
+    "fixed logomark size (32% blob width, centered)"
+  ]
+}
