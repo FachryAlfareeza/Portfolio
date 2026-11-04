@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import Image from "next/image";
 import type { ProfilePhoto } from "@/content";
 
@@ -25,17 +25,13 @@ const innerStyle: CSSProperties = {
   top: `${((PHOTO_DROP - BLOB_TOP) / BLOB) * 100}%`,
   // Rotate about the blob's center, expressed in the inner layer's coordinates.
   transformOrigin: `50% ${((BLOB_TOP + BLOB / 2 - PHOTO_DROP) / ASPECT) * 100}%`,
-  transform: "rotate(calc(var(--rot) * -1))",
+  transform: "rotate(calc(0deg - var(--rot)))",
 };
 
 const outerPhotoStyle = (split: number): CSSProperties => ({
   top: `${(PHOTO_DROP / ASPECT) * 100}%`,
   clipPath: `inset(0 0 ${100 - split}% 0)`,
 });
-
-// Rotation: slow constant drift plus extra turn tied to scroll position.
-const DRIFT_DEG_PER_SEC = 2;
-const SCROLL_DEG_PER_PX = 0.15;
 
 // A cutout photo that "pops out" of a morphing, rotating blob.
 //
@@ -49,27 +45,80 @@ const SCROLL_DEG_PER_PX = 0.15;
 // simply still.
 export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    // Continuous rotation state. `angle` is the current rotation and is never
+    // wrapped with modulo, so the pointer angle crossing ±180° can't snap.
+    const state = {
+      angle: 0,
+      target: 0,
+      pointerX: 0,
+      pointerY: 0,
+      hasPointer: false,
+      hovered: false,
+    };
+
+    // Non-hover drift: rotate slowly, wobbling between ~2 and 8 deg/sec.
+    const driftRate = (t: number) => 5 + 3 * Math.sin((t / 1000) * 0.4);
+
+    const onEnter = () => {
+      state.hovered = true;
+    };
+    const onLeave = () => {
+      state.hovered = false;
+      state.hasPointer = false;
+    };
+    const onMove = (e: PointerEvent) => {
+      state.pointerX = e.clientX;
+      state.pointerY = e.clientY;
+      state.hasPointer = true;
+    };
+
+    root.addEventListener("pointerenter", onEnter);
+    root.addEventListener("pointerleave", onLeave);
+    root.addEventListener("pointermove", onMove);
+
     let frame = 0;
     let running = false;
+    let last = performance.now();
 
-    const tick = () => {
-      const deg =
-        (performance.now() / 1000) * DRIFT_DEG_PER_SEC *
-        (isHovered ? 1.4 : 1) + // slight speed up on hover
-        window.scrollY * SCROLL_DEG_PER_PX;
-      root.style.setProperty("--rot", `${deg.toFixed(2)}deg`);
+    const tick = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.05);
+      last = now;
+
+      if (state.hovered && state.hasPointer) {
+        const rect = root.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const raw =
+          Math.atan2(state.pointerY - cy, state.pointerX - cx) * (180 / Math.PI);
+
+        // Unwrap `raw` to the nearest continuous target (no `%` on the shown
+        // angle) so the blob always takes the shortest path to the pointer.
+        let delta = raw - state.target;
+        while (delta > 180) delta -= 360;
+        while (delta < -180) delta += 360;
+        state.target += delta;
+
+        // Ease toward the pointer with exponential damping.
+        state.angle += (state.target - state.angle) * (1 - Math.exp(-dt * 9));
+      } else {
+        state.angle += driftRate(now) * dt;
+        state.target = state.angle;
+      }
+
+      root.style.setProperty("--rot", `${state.angle.toFixed(2)}deg`);
       frame = requestAnimationFrame(tick);
     };
+
     const start = () => {
       if (running) return;
       running = true;
+      last = performance.now();
       frame = requestAnimationFrame(tick);
     };
     const stop = () => {
@@ -87,8 +136,11 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
     return () => {
       observer.disconnect();
       stop();
+      root.removeEventListener("pointerenter", onEnter);
+      root.removeEventListener("pointerleave", onLeave);
+      root.removeEventListener("pointermove", onMove);
     };
-  }, [isHovered]);
+  }, []);
 
   const clamp = (n: number) => Math.min(100, Math.max(0, n));
 
@@ -107,8 +159,6 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
       ref={rootRef}
       style={{ "--rot": "0deg", aspectRatio: `1 / ${ASPECT}` } as CSSProperties}
       className="relative mx-auto w-full max-w-[460px]"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* 1. Blob. Its bounds clip the photo below the split line. */}
       <div
@@ -119,7 +169,7 @@ export function HeroPortrait({ photo }: { photo: ProfilePhoto }) {
           left: `${BLOB_LEFT * 100}%`,
           transform: "rotate(var(--rot))",
         }}
-        className="absolute bottom-0 isolate animate-blob-morph overflow-hidden rounded-[32%_38%_30%_40%/38%_30%_40%_32%] bg-gradient-to-br from-blue-deep to-blue dark:from-night-700 dark:to-orange/80 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group"
+        className="absolute bottom-0 isolate animate-blob-morph overflow-hidden rounded-[32%_38%_30%_40%/38%_30%_40%_32%] bg-gradient-to-br from-blue-deep to-blue dark:from-night-700 dark:to-orange/80 group"
       >
         {/* Ambiguous Eja logomark overlaid on the blob */}
         <span
