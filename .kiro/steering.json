@@ -7,7 +7,6 @@
     "build must pass tsc and lint"
   ],
   "pending": [
-    "scroll-responsive nav hide",
     "marquee skills display"
   ],
   "completed": [
@@ -15,7 +14,8 @@
     "hero portrait blob follows pointer on hover (smooth follow)",
     "blob stays at last hover angle when pointer leaves",
     "slow drift rotation (2 deg/s) when not hovering",
-    "reduced drift strength, smaller centered logomark"
+    "reduced drift strength, smaller centered logomark",
+    "scroll-responsive nav hide - hides on scroll down, reappears on scroll up"
   ],
-  "notes": "HeroPortrait reimplemented cleanly: pointer-follow on hover, persists angle on leave, minimal logomark overlay (32% width, 10% opacity)"
+  "notes": "HeroPortrait reimplemented cleanly: pointer-follow on hover, persists angle on leave, minimal logomark overlay (32% width, 10% opacity). Header.tsx has scroll listener + translate-y transition for nav hide."
 }
