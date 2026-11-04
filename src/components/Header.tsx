@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Container } from "./Container";
 import { ArrowUpRight } from "./icons";
 import { ThemeToggle } from "./ThemeToggle";
@@ -12,6 +13,43 @@ import { useLanguage } from "./LanguageProvider";
 
 export function Header() {
   const { ui } = useLanguage();
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      if (y > 700) {
+        setHidden(y > lastScrollY.current);
+      } else {
+        setHidden(false);
+      }
+      lastScrollY.current = y;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <header className={`sticky top-0 z-30 border-b border-line/80 bg-paper/90 backdrop-blur-md dark:border-night-line dark:bg-night-900/85 transition-transform ${hidden ? 'translate-y-[-76px]' : 'translate-y-0'}`}>
+      <Container className="flex h-[76px] items-center justify-between max-[600px]:h-[65px]">
+        <Logo />
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      if (y > 700) {
+        setHidden(y > lastScrollY.current);
+      } else {
+        setHidden(false);
+      }
+      lastScrollY.current = y;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header className="sticky top-0 z-30 border-b border-line/80 bg-paper/90 backdrop-blur-md dark:border-night-line dark:bg-night-900/85">
