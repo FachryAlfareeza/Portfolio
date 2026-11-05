@@ -8,8 +8,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { getPortfolioData, UI_COPY, type UiCopy } from "@/content/i18n";
-import type { Locale, PortfolioData } from "@/content";
+import { UI_COPY, type UiCopy } from "@/content/i18n";
+import { getPortfolioData, type Locale, type PortfolioData } from "@/content";
 
 interface LanguageContextValue {
   locale: Locale;

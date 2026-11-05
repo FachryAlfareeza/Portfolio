@@ -1,16 +1,34 @@
 {
   "profile": {
     "name": "Muhammad Fachry Alfareeza",
-    "headline": "Software, data, and applied AI.",
-    "tagline": "Information Engineering student at Universitas Gadjah Mada, building things that put those to practical use.",
-    "availability": "Open to software, data, and applied AI work",
+    "headline": { "en": "Software, data, and applied AI.", "id": "Rekayasa perangkat lunak, data, dan AI terapan." },
+    "tagline": {
+      "en": "Information Engineering student at Universitas Gadjah Mada, building things that put those to practical use.",
+      "id": "Mahasiswa Teknik Informasi di Universitas Gadjah Mada yang membangun solusi praktis berbasis data dan kecerdasan buatan."
+    },
+    "availability": {
+      "en": "Open to software, data, and applied AI work",
+      "id": "Terbuka untuk kolaborasi perangkat lunak, data, dan AI terapan"
+    },
     "location": "Yogyakarta, Indonesia",
     "timezone": "Asia/Jakarta",
-    "about": "I study Information Engineering at Universitas Gadjah Mada and build things that use data to make a decision easier. Lately that has meant a loan-assessment agent for small businesses, flood and landslide risk maps, air-quality pipelines, and an energy dashboard. I spent a semester on a funded exchange at Kırıkkale University in Türkiye.",
+    "about": {
+      "en": "I study Information Engineering at Universitas Gadjah Mada and build things that use data to make a decision easier. Lately that has meant a loan-assessment agent for small businesses, flood and landslide risk maps, air-quality pipelines, and an energy dashboard. I spent a semester on a funded exchange at Kırıkkale University in Türkiye.",
+      "id": "Saya menempuh studi Teknik Informasi di Universitas Gadjah Mada dan membangun perangkat yang memanfaatkan data untuk mempermudah pengambilan keputusan. Belakangan ini fokus tersebut mencakup agen penilaian kredit UMKM, peta risiko banjir dan longsor, pipeline kualitas udara, serta dasbor energi. Saya juga menjalani satu semester pertukaran mahasiswa dengan beasiswa penuh di Kırıkkale University, Türkiye."
+    },
     "aboutLong": [
-      "I study Information Engineering at Universitas Gadjah Mada in Yogyakarta, where my coursework in algorithms, probability, discrete mathematics, and linear algebra meets practical software and data engineering. I like working on problems where messy real-world inputs—daily cash flows, multi-source weather feeds, or government procurement documents—need to be turned into clear, auditable decisions.",
-      "Outside the classroom, I conduct applied AI research at the Artificial Intelligence Talent Factory (AITF) and lead blockchain research at the UGM Blockchain Club. Many of my favorite projects started in competitions and research sprints, from building an event-driven micro-loan risk agent for FinTechathon 2026 and mapping flood risk across Uber H3 hexagonal cells, to earning a Bronze Medal at SEA Quantathon 2026 and competing as a national finalist in Pekan Ilmiah Nasional.",
-      "In 2026, I spent a fully funded exchange semester studying Electric and Electronic Engineering at Kırıkkale University in Türkiye. Living and studying abroad shaped how I collaborate across cultures and disciplines—a perspective captured in my 'Eja' personal mark, an ambigram designed to read the same from either angle."
+      {
+        "en": "I study Information Engineering at Universitas Gadjah Mada in Yogyakarta, where my coursework in algorithms, probability, discrete mathematics, and linear algebra meets practical software and data engineering. I like working on problems where messy real-world inputs—daily cash flows, multi-source weather feeds, or government procurement documents—need to be turned into clear, auditable decisions.",
+        "id": "Saya mempelajari Teknik Informasi di Universitas Gadjah Mada, Yogyakarta, tempat fondasi algoritma, probabilitas, matematika diskrit, dan aljabar linear bertemu langsung dengan rekayasa perangkat lunak dan data. Saya senang mengerjakan persoalan ketika data dunia nyata yang kompleks—seperti arus kas harian UMKM, data cuaca multi-sumber, maupun dokumen pengadaan pemerintah—harus diolah menjadi keputusan yang jelas dan dapat diaudit."
+      },
+      {
+        "en": "Outside the classroom, I conduct applied AI research at the Artificial Intelligence Talent Factory (AITF) and lead blockchain research at the UGM Blockchain Club. Many of my favorite projects started in competitions and research sprints, from building an event-driven micro-loan risk agent for FinTechathon 2026 and mapping flood risk across Uber H3 hexagonal cells, to earning a Bronze Medal at SEA Quantathon 2026 and competing as a national finalist in Pekan Ilmiah Nasional.",
+        "id": "Di luar perkuliahan, saya melakukan riset AI terapan di Artificial Intelligence Talent Factory (AITF) dan memimpin riset blockchain di UGM Blockchain Club. Banyak proyek favorit saya lahir dari kompetisi dan riset tim: mulai dari membangun agen risiko kredit mikro berbasis event untuk FinTechathon 2026, memetakan risiko banjir dengan grid heksagonal Uber H3, hingga meraih Medali Perunggu di SEA Quantathon 2026 dan menjadi finalis nasional Pekan Ilmiah Nasional."
+      },
+      {
+        "en": "In 2026, I spent a fully funded exchange semester studying Electric and Electronic Engineering at Kırıkkale University in Türkiye. Living and studying abroad shaped how I collaborate across cultures and disciplines—a perspective captured in my 'Eja' personal mark, an ambigram designed to read the same from either angle.",
+        "id": "Pada tahun 2026, saya menjalani satu semester pertukaran mahasiswa dengan beasiswa penuh di jurusan Teknik Elektro dan Elektronika, Kırıkkale University, Türkiye. Pengalaman belajar dan tinggal lintas budaya membentuk cara saya berkolaborasi—sebuah cara pandang adaptif yang juga tercermin pada logomark personal saya, 'Eja', sebuah ambigram yang tetap terbaca sama saat diputar 180°."
+      }
     ],
     "email": "fachryalfareeza@gmail.com",
     "photo": {
@@ -25,24 +43,54 @@
     { "label": "LinkedIn", "url": "https://www.linkedin.com/in/fachryalfareeza", "icon": "linkedin" }
   ],
   "skillGroups": [
-    { "name": "Programming", "items": ["Python", "TypeScript", "JavaScript", "C#", "Kotlin", "SQL / PLpgSQL"] },
-    { "name": "Web development", "items": ["React", "FastAPI", "REST APIs", "HTML", "CSS", "Git"] },
-    { "name": "Data & analytics", "items": ["Pandas", "NumPy", "scikit-learn", "statsmodels", "Data cleaning", "Exploratory analysis"] },
-    { "name": "Areas of interest", "items": ["Geospatial data / H3", "Applied AI", "Regression", "Dashboard development"] }
+    {
+      "name": { "en": "Programming", "id": "Pemrograman" },
+      "items": ["Python", "TypeScript", "JavaScript", "C#", "Kotlin", "SQL / PLpgSQL"]
+    },
+    {
+      "name": { "en": "Web development", "id": "Pengembangan web" },
+      "items": ["React", "FastAPI", "REST APIs", "HTML", "CSS", "Git"]
+    },
+    {
+      "name": { "en": "Data & analytics", "id": "Data & analitik" },
+      "items": [
+        "Pandas",
+        "NumPy",
+        "scikit-learn",
+        "statsmodels",
+        { "en": "Data cleaning", "id": "Pembersihan data" },
+        { "en": "Exploratory analysis", "id": "Analisis eksploratif" }
+      ]
+    },
+    {
+      "name": { "en": "Areas of interest", "id": "Area minat" },
+      "items": [
+        { "en": "Geospatial data / H3", "id": "Data geospasial / H3" },
+        { "en": "Applied AI", "id": "AI terapan" },
+        { "en": "Regression", "id": "Regresi" },
+        { "en": "Dashboard development", "id": "Pengembangan dasbor" }
+      ]
+    }
   ],
   "projects": [
     {
       "name": "WeBank-AI",
-      "track": "Software & AI",
-      "description": "Scores small-business micro-loans from daily cash flow. An event-driven banking agent with DSCR risk scoring, HMAC privacy proofs, prompt-injection defenses, and data-purging controls. Built for FinTechathon 2026.",
+      "track": { "en": "Software & AI", "id": "Perangkat Lunak & AI" },
+      "description": {
+        "en": "Scores small-business micro-loans from daily cash flow. An event-driven banking agent with DSCR risk scoring, HMAC privacy proofs, prompt-injection defenses, and data-purging controls. Built for FinTechathon 2026.",
+        "id": "Menilai kelayakan kredit mikro UMKM dari arus kas harian. Agen perbankan berbasis event dengan skor risiko DSCR, bukti privasi HMAC, pertahanan prompt-injection, dan kontrol penghapusan data. Dibangun untuk FinTechathon 2026."
+      },
       "tech": ["Python", "React", "FastAPI", "Qwen2.5"],
       "repo": "https://github.com/FachryAlfareeza/WeBank-AI",
       "featured": true
     },
     {
       "name": "InaFlews",
-      "track": "Data & analytics",
-      "description": "Maps flood and landslide risk across Uber H3 cells. A geospatial dashboard mockup for spotting high-risk locations.",
+      "track": { "en": "Data & analytics", "id": "Data & analitik" },
+      "description": {
+        "en": "Maps flood and landslide risk across Uber H3 cells. A geospatial dashboard mockup for spotting high-risk locations.",
+        "id": "Memetakan risiko banjir dan tanah longsor menggunakan sel heksagonal Uber H3. Purwarupa dasbor geospasial untuk mendeteksi wilayah berisiko tinggi."
+      },
       "tech": ["TypeScript", "H3"],
       "repo": "https://github.com/FachryAlfareeza/InaFlews",
       "demo": "https://fachryalfareeza.github.io/InaFlews",
@@ -50,8 +98,11 @@
     },
     {
       "name": "AITF_Web (Airen)",
-      "track": "Software & AI",
-      "description": "Reviews Indonesian government TOR and RAB documents against a two-stage screening checklist. A frontend-only wireframe that consumes AI-review output from a separate system and leaves the final verdict to a human reviewer.",
+      "track": { "en": "Software & AI", "id": "Perangkat Lunak & AI" },
+      "description": {
+        "en": "Reviews Indonesian government TOR and RAB documents against a two-stage screening checklist. A frontend-only wireframe that consumes AI-review output from a separate system and leaves the final verdict to a human reviewer.",
+        "id": "Meninjau dokumen KAK/TOR dan RAB instansi pemerintah terhadap daftar periksa penyaringan dua tahap. Antarmuka frontend yang menampilkan hasil tinjauan AI dan menyerahkan keputusan akhir kepada peninjau manusia."
+      },
       "tech": ["React", "TypeScript", "Vite", "Tailwind"],
       "repo": "https://github.com/FachryAlfareeza/AITF_Web",
       "demo": "https://fachryalfareeza.github.io/AITF_Web",
@@ -59,67 +110,115 @@
     },
     {
       "name": "AirQuality_Report",
-      "track": "Data & analytics",
-      "description": "Cleans and merges data from several weather APIs into one dataset. A Python pipeline.",
+      "track": { "en": "Data & analytics", "id": "Data & analitik" },
+      "description": {
+        "en": "Cleans and merges data from several weather APIs into one dataset. A Python pipeline.",
+        "id": "Membersihkan dan menggabungkan data dari beberapa API cuaca menjadi satu dataset terpadu melalui pipeline Python."
+      },
       "tech": ["Python", "API data", "Preprocessing"],
       "repo": "https://github.com/FachryAlfareeza/AirQuality_Report"
     },
     {
       "name": "IETO-Dashboard",
-      "track": "Data & analytics",
-      "description": "Compares renewable and non-renewable generation side by side. An energy monitoring dashboard mockup.",
+      "track": { "en": "Data & analytics", "id": "Data & analitik" },
+      "description": {
+        "en": "Compares renewable and non-renewable generation side by side. An energy monitoring dashboard mockup.",
+        "id": "Membandingkan pembangkitan energi terbarukan dan non-terbarukan secara berdampingan dalam purwarupa dasbor pemantauan energi."
+      },
       "tech": ["TypeScript", "Data visualization"],
       "repo": "https://github.com/FachryAlfareeza/IETO-Dashboard",
       "demo": "https://fachryalfareeza.github.io/IETO-Dashboard/"
     },
     {
       "name": "SolarWise",
-      "track": "Software & AI",
-      "description": "Finds where solar panels pay off and estimates the return. A climate-action web app concept.",
+      "track": { "en": "Software & AI", "id": "Perangkat Lunak & AI" },
+      "description": {
+        "en": "Finds where solar panels pay off and estimates the return. A climate-action web app concept.",
+        "id": "Menghitung potensi lokasi pemasangan panel surya paling optimal beserta estimasi imbal hasilnya. Konsep aplikasi web aksi iklim."
+      },
       "tech": ["C#"],
       "repo": "https://github.com/FachryAlfareeza/SolarWise"
     }
   ],
   "experience": [
     {
-      "title": "Researcher",
+      "title": { "en": "Researcher", "id": "Peneliti (Researcher)" },
       "organization": "Artificial Intelligence Talent Factory (AITF)",
-      "date": "Aug 2026 — Present",
-      "description": "Collaborate on applying AI to real-world problems through team-based research and prototyping."
+      "date": { "en": "Aug 2026 — Present", "id": "Agu 2026 — Sekarang" },
+      "description": {
+        "en": "Collaborate on applying AI to real-world problems through team-based research and prototyping.",
+        "id": "Berkolaborasi dalam penerapan kecerdasan buatan untuk permasalahan dunia nyata melalui riset tim dan pembuatan purwarupa."
+      }
     },
     {
-      "title": "Lead Researcher",
+      "title": { "en": "Lead Researcher", "id": "Peneliti Utama (Lead Researcher)" },
       "organization": "UGM Blockchain Club",
-      "date": "Nov 2025 — Present",
-      "description": "Research blockchain topics for club publications and contribute to national and international blockchain community engagement."
+      "date": { "en": "Nov 2025 — Present", "id": "Nov 2025 — Sekarang" },
+      "description": {
+        "en": "Research blockchain topics for club publications and contribute to national and international blockchain community engagement.",
+        "id": "Meneliti topik-topik blockchain untuk publikasi klub serta berkontribusi dalam jejaring komunitas blockchain nasional dan internasional."
+      }
     }
   ],
   "education": [
     {
-      "title": "Bachelor of Engineering candidate, Information Engineering",
+      "title": {
+        "en": "Bachelor of Engineering candidate, Information Engineering",
+        "id": "Sarjana Teknik (S.T.) — Teknik Informasi"
+      },
       "organization": "Universitas Gadjah Mada · Yogyakarta, Indonesia",
-      "date": "Aug 2024 — Present",
-      "description": "Relevant coursework includes programming, algorithms and data structures, probability, discrete mathematics, calculus, and linear algebra."
+      "date": { "en": "Aug 2024 — Present", "id": "Agu 2024 — Sekarang" },
+      "description": {
+        "en": "Relevant coursework includes programming, algorithms and data structures, probability, discrete mathematics, calculus, and linear algebra.",
+        "id": "Mata kuliah relevan meliputi pemrograman, algoritma dan struktur data, probabilitas, matematika diskrit, kalkulus, dan aljabar linear."
+      }
     },
     {
-      "title": "Engineering exchange, Electric and Electronic Engineering",
+      "title": {
+        "en": "Engineering exchange, Electric and Electronic Engineering",
+        "id": "Pertukaran Mahasiswa Teknik — Teknik Elektro dan Elektronika"
+      },
       "organization": "Kırıkkale University · Türkiye",
       "date": "Feb 2026 — Jul 2026",
-      "description": "One-semester fully funded exchange through the Turkey International Exchange Scholarship."
+      "description": {
+        "en": "One-semester fully funded exchange through the Turkey International Exchange Scholarship.",
+        "id": "Program pertukaran mahasiswa satu semester dengan pendanaan penuh melalui Turkey International Exchange Scholarship."
+      }
     }
   ],
   "training": [
-    "Associate Data Scientist + Python — Digital Talent Academy, Digital Talent Scholarship 2026 (31 hours)",
-    "DataCamp: Python data cleaning, exploratory data analysis, statistics, regression, dimensionality reduction, and data engineering (2025–2026)",
-    "QBronze and QCobalt — QWorld"
+    {
+      "en": "Associate Data Scientist + Python — Digital Talent Academy, Digital Talent Scholarship 2026 (31 hours)",
+      "id": "Associate Data Scientist + Python — Digital Talent Academy, Digital Talent Scholarship 2026 (31 jam)"
+    },
+    {
+      "en": "DataCamp: Python data cleaning, exploratory data analysis, statistics, regression, dimensionality reduction, and data engineering (2025–2026)",
+      "id": "DataCamp: Pembersihan data Python, analisis data eksploratif, statistika, regresi, reduksi dimensi, dan rekayasa data (2025–2026)"
+    },
+    { "en": "QBronze and QCobalt — QWorld", "id": "QBronze dan QCobalt — QWorld" }
   ],
   "awards": [
-    "Bronze Medal — SEA Quantathon 2026",
-    "Finalist — Pekan Ilmiah Nasional, GFT Competition 2026",
-    "Finalist — Pekan Ilmiah Nasional, GFT Competition 2025",
-    "Silver Medal — Hong Kong International Science Olympiads 2024",
-    "Finalist — Olimpiade Sains Nasional, Astronomi 2023",
-    "Bronze Medal — Geoweek UGM Earth Science Quiz 2023"
+    { "en": "Bronze Medal — SEA Quantathon 2026", "id": "Medali Perunggu — SEA Quantathon 2026" },
+    {
+      "en": "Finalist — Pekan Ilmiah Nasional, GFT Competition 2026",
+      "id": "Finalis — Pekan Ilmiah Nasional, GFT Competition 2026"
+    },
+    {
+      "en": "Finalist — Pekan Ilmiah Nasional, GFT Competition 2025",
+      "id": "Finalis — Pekan Ilmiah Nasional, GFT Competition 2025"
+    },
+    {
+      "en": "Silver Medal — Hong Kong International Science Olympiads 2024",
+      "id": "Medali Perak — Hong Kong International Science Olympiads 2024"
+    },
+    {
+      "en": "Finalist — Olimpiade Sains Nasional, Astronomi 2023",
+      "id": "Finalis — Olimpiade Sains Nasional (OSN) Bidang Astronomi 2023"
+    },
+    {
+      "en": "Bronze Medal — Geoweek UGM Earth Science Quiz 2023",
+      "id": "Medali Perunggu — Geoweek UGM Earth Science Quiz 2023"
+    }
   ],
-  "featuredAwards": [3, 0, 4]
+  "featuredAwards": [3,0,1]
 }

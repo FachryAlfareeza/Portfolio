@@ -1,5 +1,22 @@
 export type Locale = "en" | "id";
 
+export const LOCALES: readonly Locale[] = ["en", "id"];
+
+/**
+ * A text field in data.json: a plain string when it reads the same in every
+ * language, or one value per language. `id` is optional and falls back to `en`.
+ */
+export type LocalizedText = string | ({ en: string } & Partial<Record<Exclude<Locale, "en">, string>>);
+
+/** The shape of data.json: `T` with every string field allowed to be LocalizedText. */
+export type Localizable<T> = T extends string
+  ? LocalizedText
+  : T extends (infer U)[]
+    ? Localizable<U>[]
+    : T extends object
+      ? { [K in keyof T]: Localizable<T[K]> }
+      : T;
+
 export type SocialIcon = "github" | "linkedin" | "email";
 
 export interface ProfilePhoto {
@@ -64,6 +81,7 @@ export interface TimelineEntry {
   description: string;
 }
 
+/** Content for one language, with every LocalizedText resolved to a string. */
 export interface PortfolioData {
   profile: Profile;
   social: SocialLink[];

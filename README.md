@@ -28,7 +28,20 @@ Other scripts:
 
 ## Update content
 
-All page content comes from `src/content/data.json`: profile, social links, grouped skills, projects, experience, education, training, and awards. Types live in `src/content/types.ts`, so edits are type-checked on build. UI strings and the Indonesian translation live in `src/content/i18n.ts`.
+All page content comes from `src/content/data.json`: profile, social links, grouped skills, projects, experience, education, training, and awards. Types live in `src/content/types.ts`, so edits are type-checked on build.
+
+Both languages live in that one file. A text field is either a plain string, when it reads the same in English and Indonesian (names, URLs, tech stacks), or an object with one value per language:
+
+```json
+"description": {
+  "en": "Scores small-business micro-loans from daily cash flow.",
+  "id": "Menilai kelayakan kredit mikro UMKM dari arus kas harian."
+}
+```
+
+If `id` is missing, the English text is shown. Adding a project, job or award is one edit, in one place. `src/content/index.ts` resolves the fields per language; `/cv`, `/llms.txt` and the share image use English.
+
+`src/content/i18n.ts` holds only the interface text (nav labels, buttons, screen-reader labels), in both languages.
 
 The About section shows a GitHub contributions heatmap from `src/content/github-contributions.json`. Don't edit that file by hand: run `npm run sync:github` to regenerate it. With a `GITHUB_TOKEN` in `.env.local` (classic token with `repo` scope, or fine-grained with Contents + Metadata read) the count includes private repos; without one it uses public contributions only.
 
@@ -109,7 +122,7 @@ src/
     types.ts              # content types
     index.ts              # typed loader
     cvFormat.ts           # copy formatters used by /cv and /llms.txt
-    i18n.ts               # UI strings and Indonesian translation
+    i18n.ts               # interface strings (EN/ID)
     github-contributions.json  # heatmap snapshot (generated)
   lib/feedback.ts         # UI sounds and haptics
 scripts/sync-github.mjs   # regenerates the heatmap snapshot
