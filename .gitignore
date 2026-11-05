@@ -37,5 +37,20 @@ Thumbs.db
 
 # Local-only: the brand source kit (logo files, font zip).
 # Brand assets actually used by the site live in public/brand and src/app/icon.svg.
-# Agent steering docs (agents.md, .kiro/) are committed on purpose.
 context/
+
+# Local-only: AI agent context and steering files. Never commit these.
+/agents.md
+/AGENTS.md
+/CLAUDE.md
+/CLAUDE.local.md
+/GEMINI.md
+.kiro/
+.claude/
+.cursor/
+.cursorrules
+.windsurf/
+.windsurfrules
+.github/copilot-instructions.md
+.aider*
+.codex/

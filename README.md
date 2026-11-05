@@ -119,7 +119,7 @@ public/
 legacy/                   # the original static site, kept for reference
 ```
 
-`agents.md` and `.kiro/` hold agent steering notes and are committed. `context/` (brand kit) is git-ignored.
+`context/` (brand kit) is git-ignored.
 
 ## Contact form
 
