@@ -9,6 +9,7 @@ import { SoundToggle } from "./SoundToggle";
 import { Logo } from "./Logo";
 import { NavLinks } from "./NavLinks";
 import { MobileNav } from "./MobileNav";
+import { CommandPalette } from "./CommandPalette";
 import { useLanguage } from "./LanguageProvider";
 
 export function Header() {
@@ -42,6 +43,7 @@ export function Header() {
         <NavLinks />
 
         <div className="flex items-center gap-2 max-[600px]:ml-auto">
+          <CommandPalette />
           <LanguageToggle />
           <SoundToggle />
           <ThemeToggle />

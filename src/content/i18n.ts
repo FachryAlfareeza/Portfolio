@@ -105,6 +105,19 @@ export interface UiCopy {
     unmuteSound: string;
     backToTop: string;
   };
+  palette: {
+    open: string;
+    title: string;
+    placeholder: string;
+    empty: string;
+    groupNavigate: string;
+    groupActions: string;
+    groupLinks: string;
+    contact: string;
+    copyEmail: string;
+    copiedEmail: string;
+    closeHint: string;
+  };
 }
 
 export const UI_COPY: Record<Locale, UiCopy> = {
@@ -213,6 +226,19 @@ export const UI_COPY: Record<Locale, UiCopy> = {
       unmuteSound: "Unmute UI sounds",
       backToTop: "Back to top",
     },
+    palette: {
+      open: "Open command menu",
+      title: "Command menu",
+      placeholder: "Type a command or search…",
+      empty: "No matching commands.",
+      groupNavigate: "Go to",
+      groupActions: "Actions",
+      groupLinks: "Links",
+      contact: "Contact",
+      copyEmail: "Copy email address",
+      copiedEmail: "Email copied ✓",
+      closeHint: "to close",
+    },
   },
   id: {
     skipToContent: "Langsung ke konten",
@@ -318,6 +344,19 @@ export const UI_COPY: Record<Locale, UiCopy> = {
       muteSound: "Matikan suara antarmuka",
       unmuteSound: "Nyalakan suara antarmuka",
       backToTop: "Kembali ke atas",
+    },
+    palette: {
+      open: "Buka menu perintah",
+      title: "Menu perintah",
+      placeholder: "Ketik perintah atau cari…",
+      empty: "Tidak ada perintah yang cocok.",
+      groupNavigate: "Buka bagian",
+      groupActions: "Aksi",
+      groupLinks: "Tautan",
+      contact: "Kontak",
+      copyEmail: "Salin alamat email",
+      copiedEmail: "Email tersalin ✓",
+      closeHint: "untuk menutup",
     },
   },
 };

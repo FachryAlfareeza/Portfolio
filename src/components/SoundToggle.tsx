@@ -3,19 +3,21 @@
 import { useEffect, useState } from "react";
 import { VolumeIcon, VolumeMuteIcon } from "./icons";
 import { useLanguage } from "./LanguageProvider";
-import { isSoundMuted, playTick, setSoundMuted } from "@/lib/feedback";
+import { isSoundMuted, playTick, setSoundMuted, SOUND_CHANGE_EVENT } from "@/lib/feedback";
 
 export function SoundToggle() {
   const [muted, setMuted] = useState(false);
   const { ui } = useLanguage();
 
   useEffect(() => {
-    setMuted(isSoundMuted());
+    const sync = () => setMuted(isSoundMuted());
+    sync();
+    window.addEventListener(SOUND_CHANGE_EVENT, sync);
+    return () => window.removeEventListener(SOUND_CHANGE_EVENT, sync);
   }, []);
 
   const toggle = () => {
     const next = !muted;
-    setMuted(next);
     setSoundMuted(next);
     if (!next) {
       playTick();

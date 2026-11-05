@@ -5,12 +5,30 @@ import { MoonIcon, SunIcon } from "./icons";
 import { useLanguage } from "./LanguageProvider";
 import { playPop } from "@/lib/feedback";
 
-type Theme = "light" | "dark";
+export type Theme = "light" | "dark";
+
+// Fired on window so every theme control (header toggle, command menu) stays in sync.
+const THEME_CHANGE_EVENT = "theme-change";
 
 function applyTheme(theme: Theme) {
   const root = document.documentElement;
   root.classList.toggle("dark", theme === "dark");
   root.style.colorScheme = theme;
+}
+
+export function currentTheme(): Theme {
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+}
+
+// Apply and remember an explicit theme choice.
+export function setStoredTheme(theme: Theme) {
+  applyTheme(theme);
+  try {
+    localStorage.setItem("theme", theme);
+  } catch {
+    // ignore storage failures (private mode, etc.)
+  }
+  window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
 }
 
 export function ThemeToggle() {
@@ -20,8 +38,9 @@ export function ThemeToggle() {
   // Read the theme the no-flash script already resolved on the html element,
   // and follow OS-level changes until the user picks a theme explicitly.
   useEffect(() => {
-    const isDark = document.documentElement.classList.contains("dark");
-    setTheme(isDark ? "dark" : "light");
+    const sync = () => setTheme(currentTheme());
+    sync();
+    window.addEventListener(THEME_CHANGE_EVENT, sync);
 
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const onChange = (event: MediaQueryListEvent) => {
@@ -37,22 +56,17 @@ export function ThemeToggle() {
       applyTheme(next);
     };
     media.addEventListener("change", onChange);
-    return () => media.removeEventListener("change", onChange);
+    return () => {
+      window.removeEventListener(THEME_CHANGE_EVENT, sync);
+      media.removeEventListener("change", onChange);
+    };
   }, []);
 
   const toggle = (event: MouseEvent<HTMLButtonElement>) => {
-    const next: Theme = theme === "dark" ? "light" : "dark";
+    const next: Theme = currentTheme() === "dark" ? "light" : "dark";
     playPop(next === "light");
 
-    const commitTheme = () => {
-      setTheme(next);
-      applyTheme(next);
-      try {
-        localStorage.setItem("theme", next);
-      } catch {
-        // ignore storage failures (private mode, etc.)
-      }
-    };
+    const commitTheme = () => setStoredTheme(next);
 
     const doc = document as Document & {
       startViewTransition?: (cb: () => void) => { ready: Promise<void> };

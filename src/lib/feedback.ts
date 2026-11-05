@@ -47,6 +47,9 @@ export function isSoundMuted(): boolean {
   }
 }
 
+// Fired on window so every sound control (header toggle, command menu) stays in sync.
+export const SOUND_CHANGE_EVENT = "sound-muted-change";
+
 export function setSoundMuted(muted: boolean): void {
   try {
     if (muted) localStorage.setItem(SOUND_STORAGE_KEY, "1");
@@ -54,6 +57,7 @@ export function setSoundMuted(muted: boolean): void {
   } catch {
     /* ignore */
   }
+  window.dispatchEvent(new Event(SOUND_CHANGE_EVENT));
 }
 
 export function vibrate(pattern: number | number[] = 5): void {
