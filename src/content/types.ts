@@ -72,5 +72,8 @@ export interface PortfolioData {
   experience: TimelineEntry[];
   education: TimelineEntry[];
   training: string[];
+  /** "Rank — Event Year", e.g. "Silver Medal — Hong Kong International Science Olympiads 2024". */
   awards: string[];
+  /** Indexes into `awards` shown as highlight cards in About (order kept). */
+  featuredAwards?: number[];
 }

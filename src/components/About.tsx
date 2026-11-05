@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { SocialGlyph, ArrowUpRight } from "./icons";
 import { GitHubActivity } from "./GitHubActivity";
+import { AwardHighlights } from "./AwardHighlights";
 import { useLanguage } from "./LanguageProvider";
 import { playTick } from "@/lib/feedback";
 import type { Profile, SocialLink } from "@/content";
@@ -83,6 +84,8 @@ export function About({
           ))}
         </div>
       )}
+
+      <AwardHighlights />
 
       <div className="mt-[23px] flex flex-wrap gap-[9px]">
         {social.map((item) => (

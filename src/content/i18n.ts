@@ -36,6 +36,7 @@ export interface UiCopy {
     depthLabel: string;
     depthQuick: string;
     depthStory: string;
+    highlightsLabel: string;
   };
   github: {
     title: string;
@@ -156,6 +157,7 @@ export const UI_COPY: Record<Locale, UiCopy> = {
       depthLabel: "Bio length",
       depthQuick: "Quick",
       depthStory: "Full story",
+      highlightsLabel: "Highlights",
     },
     github: {
       title: "GitHub activity",
@@ -275,6 +277,7 @@ export const UI_COPY: Record<Locale, UiCopy> = {
       depthLabel: "Kedalaman profil",
       depthQuick: "Ringkas",
       depthStory: "Cerita lengkap",
+      highlightsLabel: "Sorotan",
     },
     github: {
       title: "Aktivitas GitHub",
