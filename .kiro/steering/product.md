@@ -26,7 +26,7 @@ Editing content means editing `data.json`, not the components.
 - `headline` — short, punchy hero H1 (e.g. `"Software, data, and applied AI."`). Keep it short; do not promote `tagline` into it.
 - `tagline` — a longer supporting sentence shown muted under the headline.
 - `timezone` — IANA name (e.g. `"Asia/Jakarta"`), drives the live local time in the hero.
-- `photo.src` / `photo.srcDark` — transparent cutout paths (PNG/WebP/SVG, 4:5, subject anchored to the bottom edge). `srcDark` is optional; falls back to `src`. Currently `/assets/Me-2.png` (light) and `/assets/Me-1.png` (dark).
+- `photo.src` / `photo.srcDark` — transparent cutout paths (PNG/WebP/SVG, 4:5, subject anchored to the bottom edge). `srcDark` is optional; falls back to `src`. Currently `/assets/Me-2.webp` (light) and `/assets/Me-1.webp` (dark).
 - `photo.split` / `photo.splitDark` — 0–100, percent from the top where the portrait "pops out" of the morphing blob. Tune to sit just above the shoulders.
 
 ### Writing conventions for content

@@ -70,7 +70,7 @@ src/
 scripts/
   sync-github.mjs         # writes github-contributions.json
 public/
-  assets/                 # CV PDF, brand guidelines PDF, hero portraits (Me-1/Me-2.png)
+  assets/                 # CV PDF, brand guidelines PDF, hero portraits (Me-1/Me-2.webp)
   brand/                  # logomark.svg, pattern-eja.svg, unused profile placeholder SVGs
 legacy/                   # original static site, kept for reference
 ```
