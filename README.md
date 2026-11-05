@@ -73,7 +73,7 @@ Light mode is blue on white; dark mode is orange on near-black. Colors are Tailw
 Brand assets:
 
 - `public/brand/logomark.svg`: the Eja ambigram logomark, used in the header and over the hero blob. It is drawn through a CSS mask, so keep it a single solid shape; the color follows the theme.
-- `src/app/icon.svg`: the favicon.
+- `src/app/icon.svg`: the default favicon (follows the OS color scheme). Once the page loads, `ThemeToggle.tsx` swaps it for `public/brand/icon-light.svg` or `icon-dark.svg` so the tab icon matches the theme picked on the site. If the mark changes, update all three.
 - Hero portraits: `public/assets/Me-2.webp` (light) and `Me-1.webp` (dark), set by `profile.photo.src` and `profile.photo.srcDark` in `data.json`. Use transparent cutouts (PNG or WebP, 4:5, subject anchored to the bottom edge, same framing in both). `srcDark` and `splitDark` are optional; without `srcDark` the light photo is used in both modes. The head pops out of a morphing blob; tune `profile.photo.split` (0-100, percent from the top) so the cut sits just above the shoulders. The blob drifts, follows the pointer on hover, and spins faster as you scroll (`HeroPortrait.tsx`); all of it stops under `prefers-reduced-motion`. `public/brand/profile-placeholder*.svg` are unused leftovers.
 
 The source brand kit (logos, patterns, font) is kept locally in `context/` and is git-ignored.

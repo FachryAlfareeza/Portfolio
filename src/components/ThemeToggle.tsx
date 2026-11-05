@@ -10,10 +10,20 @@ export type Theme = "light" | "dark";
 // Fired on window so every theme control (header toggle, command menu) stays in sync.
 const THEME_CHANGE_EVENT = "theme-change";
 
+// src/app/icon.svg follows the OS color scheme, which can disagree with the
+// site's toggle. Point the tab icon at a fixed-color copy for the active theme.
+function applyFavicon(theme: Theme) {
+  const href = `/brand/icon-${theme}.svg`;
+  document.querySelectorAll<HTMLLinkElement>('link[rel~="icon"]').forEach((link) => {
+    if (link.getAttribute("href") !== href) link.setAttribute("href", href);
+  });
+}
+
 function applyTheme(theme: Theme) {
   const root = document.documentElement;
   root.classList.toggle("dark", theme === "dark");
   root.style.colorScheme = theme;
+  applyFavicon(theme);
 }
 
 export function currentTheme(): Theme {
@@ -40,6 +50,8 @@ export function ThemeToggle() {
   useEffect(() => {
     const sync = () => setTheme(currentTheme());
     sync();
+    // The no-flash script sets the theme before the icon link exists, so match it here.
+    applyFavicon(currentTheme());
     window.addEventListener(THEME_CHANGE_EVENT, sync);
 
     const media = window.matchMedia("(prefers-color-scheme: dark)");
