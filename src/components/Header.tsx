@@ -33,7 +33,7 @@ export function Header() {
   return (
     <header
       className={`sticky top-0 z-30 border-b border-line/80 bg-paper/90 backdrop-blur-md dark:border-night-line dark:bg-night-900/85 transition-transform ${
-        hidden ? "translate-y-[-76px]" : "translate-y-0"
+        hidden ? "translate-y-[-76px] focus-within:translate-y-0" : "translate-y-0"
       }`}
     >
       <Container className="flex h-[76px] items-center justify-between max-[600px]:h-[65px]">
