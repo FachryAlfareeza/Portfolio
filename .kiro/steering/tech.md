@@ -33,7 +33,9 @@ src/
     globals.css           # Tailwind layers, base resets, focus rings
     icon.svg              # favicon (Eja logomark)
     not-found.tsx         # 404 page
-    robots.ts             # robots.txt (blocks /cv and /api/)
+    robots.ts             # robots.txt (blocks /cv and /api/, links the sitemap)
+    sitemap.ts            # sitemap.xml (home + /llms.txt; /cv excluded)
+    opengraph-image.tsx   # 1200x630 share card via next/og, built from data.json
     llms.txt/route.ts     # force-static plain-text summary generated from data.json
     cv/page.tsx           # unlisted CV working copy
     api/contact/route.ts  # contact form handler (Resend)
@@ -45,6 +47,8 @@ src/
     LanguageToggle.tsx    # EN/ID switch
     SoundToggle.tsx       # mutes UI sounds (localStorage key `sound-muted`)
     SkipLink.tsx          # translated "skip to content" link
+    CommandPalette.tsx    # Ctrl/Cmd+K command menu (native <dialog>, ARIA combobox)
+    AwardHighlights.tsx   # featured award cards in About (`featuredAwards` in data.json)
     GitHubActivity.tsx    # contributions heatmap from the JSON snapshot
     NavLinks.tsx          # desktop nav with scroll-spy
     MobileNav.tsx         # mobile hamburger menu
@@ -67,6 +71,7 @@ src/
     github-contributions.json  # heatmap snapshot (generated, don't hand-edit)
   lib/
     feedback.ts           # synth click sounds + haptics (zero-dep)
+    site.ts               # absolute site origin for sitemap / OG URLs
 scripts/
   sync-github.mjs         # writes github-contributions.json
 public/
@@ -116,6 +121,7 @@ The form (`src/components/ContactForm.tsx`) posts to `src/app/api/contact/route.
 | `RESEND_API_KEY` | yes | Missing → API returns 503 and no mail is sent. |
 | `CONTACT_TO_EMAIL` | no | Delivery address. Defaults to `profile.email` in `data.json`. |
 | `CONTACT_FROM_EMAIL` | no | Must be a verified Resend sender. Defaults to `onboarding@resend.dev`. |
+| `NEXT_PUBLIC_SITE_URL` | no | Canonical origin (e.g. `https://example.com`) for the sitemap and share-image URLs. On Vercel it falls back to the production domain automatically. |
 | `GITHUB_TOKEN` | no | Only for `npm run sync:github`. Lets the heatmap include private-repo contributions (classic: `repo` scope; fine-grained: Contents + Metadata read). Not needed at runtime. |
 
 Local: put these in `.env.local` (git-ignored; all `.env*` files are ignored except a future `.env.example`). Production: set them in the Vercel dashboard.

@@ -27,7 +27,11 @@ This document is read by local AI agents working on this portfolio project. It i
 
 - [x] **Scroll-responsive nav** — done in `Header.tsx`: single passive scroll listener, header slides up on scroll down past 700px and returns on scroll up.
 - [ ] **Marquee skills display** — replace the static skills grid with horizontally scrolling tech badges using CSS `@keyframes marquee`. No JS animation lib; keyboard pause on hover. Follow `skills.heading` copy.
-- [ ] **About section redesign** — large portrait, decorative background text, achievement cards. Per the reference site `kuchikamizake.me`.
+- [ ] **About section redesign** — large portrait, decorative background text, achievement cards. Per the reference site `kuchikamizake.me`. Achievement cards are done (`AwardHighlights.tsx`, picked by `featuredAwards` in `data.json`); portrait and background text remain.
+- [x] **Command menu** — `CommandPalette.tsx`, Ctrl/Cmd+K or the header button (shown at 1100px and wider). Native `<dialog>` + ARIA combobox. Theme and sound changes broadcast window events (`theme-change`, `sound-muted-change`) so every control stays in sync; reuse `setStoredTheme` / `setSoundMuted` rather than writing `localStorage` directly.
+- [x] **Share preview + sitemap** — `opengraph-image.tsx` (built-in `next/og`), `sitemap.ts`, and `metadataBase` from `src/lib/site.ts` (`NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → localhost).
+- [ ] **Project case studies** — `slug`, `year`, `role`, `image`, `outcome`, `body` on each project; static `/projects/[slug]` pages; cards link to them. Needs written content per project first.
+- [ ] **Smaller ideas** — ambigram easter egg (hidden trigger flips the page 180°), cursor spotlight on cards, dim sibling project cards on hover, year column on timeline entries, footer "last updated" + link to `/llms.txt`, print stylesheet. Skip a loading-counter splash: it delays first paint.
 - [ ] **Hero text reveals** — staggered reveal with blinking cursor effect.
 - [ ] **Background pointer-responsive effects** — mesh gradient following cursor; glassmorphism cards.
 

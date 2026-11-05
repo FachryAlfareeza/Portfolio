@@ -77,6 +77,9 @@ Everything below is dependency-free and respects `prefers-reduced-motion`.
 - **Live local time** in the hero.
 - **Project filter** replays a staggered card animation and announces results to screen readers.
 - **Contact form**: inline validation, character counter, request timeout, and a mailto fallback when sending fails. "Copy email" sits next to the email button.
+- **Command menu**: Ctrl+K (⌘K on Mac), or the header button on wide screens. Jump to a section, switch theme, language or sound, copy the email, or open the CV and social links.
+- **Award highlights**: the awards listed in `featuredAwards` (positions in `awards`, in `data.json`) show as cards in About.
+- **Link previews**: `opengraph-image.tsx` renders the share card from `data.json`; `sitemap.ts` and `robots.ts` point crawlers at the home page. Set `NEXT_PUBLIC_SITE_URL` once there is a custom domain; on Vercel the production domain is used automatically.
 - **Theme**: follows the OS until you pick a theme with the toggle; your choice is stored in `localStorage`.
 - **Keyboard focus** uses a visible 2px ring (blue on light, orange on dark and on the contact panel).
 - **Minimum font size** is 12px everywhere.
@@ -95,6 +98,8 @@ src/
     icon.svg              # favicon (placeholder)
     not-found.tsx         # 404 page
     robots.ts             # robots.txt
+    sitemap.ts            # sitemap.xml
+    opengraph-image.tsx   # social share card
     llms.txt/route.ts     # plain-text content summary
     cv/page.tsx           # unlisted CV working copy
     api/contact/route.ts  # contact form handler (Resend)

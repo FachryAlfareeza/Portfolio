@@ -8,15 +8,21 @@
   ],
   "pending": [
     "marquee skills display",
-    "about section redesign",
+    "about section redesign (portrait + background text; award cards done)",
     "hero text reveals",
-    "background pointer-responsive effects"
+    "background pointer-responsive effects",
+    "project case-study pages (/projects/[slug])"
   ],
   "completed": [
     "added ambigram logomark to hero portrait blob",
     "scroll-responsive nav hide - hides on scroll down past 700px, reappears on scroll up",
     "hero portrait: pointer-follow on hover, drift (~2-8 deg/s) plus scroll-velocity spin, no snapping at +/-180 deg",
     "github heatmap includes private-repo contributions via GITHUB_TOKEN (npm run sync:github)",
-    "removed unused Visby brand font files"
+    "removed unused Visby brand font files",
+    "hidden header slides back when keyboard focus enters it",
+    "hero portraits served as 1200px WebP (originals in context/portraits)",
+    "OG share image, sitemap.xml, metadataBase",
+    "Ctrl/Cmd+K command menu",
+    "featured award cards in About"
   ]
 }
