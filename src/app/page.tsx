@@ -14,6 +14,7 @@ import { SectionLabel } from "@/components/SectionLabel";
 import { Reveal } from "@/components/Reveal";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BackToTop } from "@/components/BackToTop";
+import { SkipLink } from "@/components/SkipLink";
 
 export default function Home() {
   const {
@@ -29,12 +30,7 @@ export default function Home() {
 
   return (
     <>
-      <a
-        href="#about"
-        className="absolute left-4 top-[-60px] z-[100] bg-white px-3 py-2 text-ink focus:top-3"
-      >
-        Skip to content
-      </a>
+      <SkipLink />
 
       <ScrollProgress />
       <Header />
