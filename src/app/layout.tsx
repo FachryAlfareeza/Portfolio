@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Manrope, DM_Mono } from "next/font/google";
 import { portfolio } from "@/content";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -22,6 +23,7 @@ const siteTitle = `${portfolio.profile.name} | Software and Data`;
 const siteDescription = `${portfolio.profile.headline} ${portfolio.profile.tagline}`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: siteTitle,
   description: siteDescription,
   openGraph: {
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
     siteName: portfolio.profile.name,
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
   },
