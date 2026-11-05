@@ -35,7 +35,7 @@ next-env.d.ts
 Thumbs.db
 *.pem
 
-# Local-only: agent steering docs and the brand source kit (logo files, font zip).
+# Local-only: the brand source kit (logo files, font zip).
 # Brand assets actually used by the site live in public/brand and src/app/icon.svg.
-.kiro/
+# Agent steering docs (agents.md, .kiro/) are committed on purpose.
 context/

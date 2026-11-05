@@ -16,8 +16,9 @@ npm install           # install deps
 npm run dev           # dev server at http://localhost:3000
 npm run build         # production build (also type-checks and lints)
 npm run start         # serve the production build (restart after each rebuild)
-npm run lint          # lint
+npm run lint          # lint (`next lint`; deprecated in Next 16, fine on 15)
 npx tsc --noEmit      # type-check only
+npm run sync:github   # refresh src/content/github-contributions.json (reads GITHUB_TOKEN from .env.local)
 ```
 
 Run `npm run build` to verify a change compiles and type-checks. Do not leave `npm run dev` running as a blocking command.
@@ -30,14 +31,21 @@ src/
     layout.tsx            # root layout, fonts, metadata, no-flash theme script
     page.tsx              # page composition
     globals.css           # Tailwind layers, base resets, focus rings
-    icon.svg              # favicon (placeholder)
+    icon.svg              # favicon (Eja logomark)
     not-found.tsx         # 404 page
     robots.ts             # robots.txt (blocks /cv and /api/)
+    llms.txt/route.ts     # force-static plain-text summary generated from data.json
     cv/page.tsx           # unlisted CV working copy
     api/contact/route.ts  # contact form handler (Resend)
   components/             # header, sections, nav, motion widgets, /cv tooling, icons
     nav.ts                # section ids (shared between NavLinks and scroll-spy)
-    HeroPortrait.tsx      # morphing blob + portrait, drift/scroll animation
+    Header.tsx            # sticky header; hides on scroll down past 700px
+    HeroPortrait.tsx      # morphing blob + portrait: pointer-follow, drift, scroll spin
+    LanguageProvider.tsx  # EN/ID context (localStorage key `locale`)
+    LanguageToggle.tsx    # EN/ID switch
+    SoundToggle.tsx       # mutes UI sounds (localStorage key `sound-muted`)
+    SkipLink.tsx          # translated "skip to content" link
+    GitHubActivity.tsx    # contributions heatmap from the JSON snapshot
     NavLinks.tsx          # desktop nav with scroll-spy
     MobileNav.tsx         # mobile hamburger menu
     BackToTop.tsx         # back-to-top button
@@ -54,16 +62,22 @@ src/
     data.json             # all page content (source of truth)
     types.ts              # content types
     index.ts              # typed loader
-    cvFormat.ts           # copy formatters for /cv
+    cvFormat.ts           # copy formatters for /cv and /llms.txt
+    i18n.ts               # UI strings (EN/ID) and Indonesian content overrides
+    github-contributions.json  # heatmap snapshot (generated, don't hand-edit)
+  lib/
+    feedback.ts           # synth click sounds + haptics (zero-dep)
+scripts/
+  sync-github.mjs         # writes github-contributions.json
 public/
-  assets/                 # downloadable CV PDF
-  brand/                  # logomark.svg, profile placeholder SVGs
+  assets/                 # CV PDF, brand guidelines PDF, hero portraits (Me-1/Me-2.png)
+  brand/                  # logomark.svg, pattern-eja.svg, unused profile placeholder SVGs
 legacy/                   # original static site, kept for reference
 ```
 
 - Import alias: `@/*` maps to `./src/*`.
 - `legacy/` is reference only — excluded from TypeScript and not part of the app.
-- `.kiro/` and `context/` are git-ignored.
+- `context/` is git-ignored. `agents.md` and `.kiro/` are committed.
 
 ## Design tokens
 
@@ -84,11 +98,11 @@ Defined in `tailwind.config.ts`. Use token names, not raw hex. Light mode is blu
 
 ## Conventions
 
-- Prefer React Server Components. Make a component client-side (`"use client"`) only when interactivity requires it: project track filter, theme toggle, scroll-reveal, contact form, scroll-spy nav, mobile menu, back-to-top, scroll progress, live local time, copy button.
+- Prefer React Server Components for anything that shows no translated copy and has no interactivity (`Container`, `Section`, `icons`, `page.tsx`). Components that render UI strings need `useLanguage()` and so are client components; that is why most of `src/components/` is `"use client"`. Pages are still statically prerendered.
 - Dark mode is class-based. A no-flash inline script in `layout.tsx` applies the stored theme (`localStorage` key `theme`) before paint; the OS preference is followed until the user picks a theme.
 - Keyboard focus uses a visible 2 px ring — blue on light, orange on dark and the contact panel.
 - Minimum font size is 12 px everywhere.
-- All interactive widgets (scroll-reveal, hero portrait drift/scroll animation, project filter stagger) respect `prefers-reduced-motion`.
+- All interactive widgets (scroll-reveal, hero portrait drift/scroll animation, project filter stagger, header hide, UI sounds/haptics) respect `prefers-reduced-motion`. `globals.css` also disables all transitions and animations under it.
 - Icons are inlined as components in `src/components/icons.tsx` (Lucide for UI glyphs, Simple Icons for brand marks) — add new icons there rather than pulling a package.
 - Section ids are centralised in `src/components/nav.ts`; reference that file rather than hardcoding strings in components.
 - Scroll reveal (`Reveal.tsx`): content is in the server HTML so the page works without JS. Below-the-fold blocks are hidden just before first paint and faded in by `IntersectionObserver`.
@@ -102,6 +116,7 @@ The form (`src/components/ContactForm.tsx`) posts to `src/app/api/contact/route.
 | `RESEND_API_KEY` | yes | Missing → API returns 503 and no mail is sent. |
 | `CONTACT_TO_EMAIL` | no | Delivery address. Defaults to `profile.email` in `data.json`. |
 | `CONTACT_FROM_EMAIL` | no | Must be a verified Resend sender. Defaults to `onboarding@resend.dev`. |
+| `GITHUB_TOKEN` | no | Only for `npm run sync:github`. Lets the heatmap include private-repo contributions (classic: `repo` scope; fine-grained: Contents + Metadata read). Not needed at runtime. |
 
 Local: put these in `.env.local` (git-ignored; all `.env*` files are ignored except a future `.env.example`). Production: set them in the Vercel dashboard.
 

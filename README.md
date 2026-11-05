@@ -1,6 +1,6 @@
 # Muhammad Fachry Alfareeza — Portfolio
 
-A single-page portfolio for software engineering, data analysis, and applied AI work. Built with Next.js (App Router) and Tailwind CSS, rendered mostly as React Server Components so it ships little client JavaScript. Deployed on Vercel.
+A single-page portfolio for software engineering, data analysis, and applied AI work, in English and Indonesian. Built with Next.js (App Router) and Tailwind CSS, with every page statically prerendered. Deployed on Vercel.
 
 ## Stack
 
@@ -24,10 +24,15 @@ Other scripts:
 - `npm run start`: serve the production build locally (restart it after each rebuild)
 - `npm run lint`: lint
 - `npx tsc --noEmit`: type-check only
+- `npm run sync:github`: refresh the GitHub contributions heatmap (see below)
 
 ## Update content
 
-All page content comes from `src/content/data.json`: profile, social links, grouped skills, projects, experience, education, training, and awards. Types live in `src/content/types.ts`, so edits are type-checked on build.
+All page content comes from `src/content/data.json`: profile, social links, grouped skills, projects, experience, education, training, and awards. Types live in `src/content/types.ts`, so edits are type-checked on build. UI strings and the Indonesian translation live in `src/content/i18n.ts`.
+
+The About section shows a GitHub contributions heatmap from `src/content/github-contributions.json`. Don't edit that file by hand: run `npm run sync:github` to regenerate it. With a `GITHUB_TOKEN` in `.env.local` (classic token with `repo` scope, or fine-grained with Contents + Metadata read) the count includes private repos; without one it uses public contributions only.
+
+`/llms.txt` serves a plain-text summary of the same content for LLM crawlers.
 
 Notes:
 
@@ -52,13 +57,11 @@ Light mode is blue on white; dark mode is orange on near-black. Colors are Tailw
 | `orange` / `orange-strong` | `#F4A261` / `#E07B39` | dark-mode accent / hover |
 | `night-900` / `800` / `700` | `#0A0A0B` / `#161618` / `#201E1C` | dark background / cards / hero card |
 
-Two assets are placeholders to replace with the real mark:
+Brand assets:
 
-- `public/brand/logomark.svg`: header logomark. It is drawn through a CSS mask, so use a single solid shape; the color follows the theme.
+- `public/brand/logomark.svg`: the Eja ambigram logomark, used in the header and over the hero blob. It is drawn through a CSS mask, so keep it a single solid shape; the color follows the theme.
 - `src/app/icon.svg`: the favicon.
-- `public/brand/profile-placeholder.svg` and `profile-placeholder-dark.svg`: the hero portraits for light and dark mode. Drop in transparent cutouts (PNG or WebP, 4:5, subject anchored to the bottom edge, same framing in both) and point `profile.photo.src` and `profile.photo.srcDark` in `data.json` at them. `srcDark` and `splitDark` are optional; without `srcDark` the light photo is used in both modes. The head pops out of a morphing blob; tune `profile.photo.split` (0-100, percent from the top) so the cut sits just above the shoulders. The blob drifts slowly and turns further as you scroll (`HeroPortrait.tsx`); both stop under `prefers-reduced-motion`.
-
-The hero's "focus card" (01 Software engineering, 02 Data & analytics, 03 Research) is parked as a commented-out block in `Hero.tsx` until a new home is picked.
+- Hero portraits: `public/assets/Me-2.png` (light) and `Me-1.png` (dark), set by `profile.photo.src` and `profile.photo.srcDark` in `data.json`. Use transparent cutouts (PNG or WebP, 4:5, subject anchored to the bottom edge, same framing in both). `srcDark` and `splitDark` are optional; without `srcDark` the light photo is used in both modes. The head pops out of a morphing blob; tune `profile.photo.split` (0-100, percent from the top) so the cut sits just above the shoulders. The blob drifts, follows the pointer on hover, and spins faster as you scroll (`HeroPortrait.tsx`); all of it stops under `prefers-reduced-motion`. `public/brand/profile-placeholder*.svg` are unused leftovers.
 
 The source brand kit (logos, patterns, font) is kept locally in `context/` and is git-ignored.
 
@@ -67,7 +70,9 @@ The source brand kit (logos, patterns, font) is kept locally in `context/` and i
 Everything below is dependency-free and respects `prefers-reduced-motion`.
 
 - **Scroll reveal** (`Reveal.tsx`): content is visible in the server HTML, so the page works without JavaScript. Below-the-fold blocks are hidden just before first paint and faded in by an `IntersectionObserver`.
-- **Navigation**: scroll-spy highlights the current section (`NavLinks.tsx`, `nav.ts`); a mobile menu (`MobileNav.tsx`) replaces the desktop links under 600px. Section ids live in `nav.ts`.
+- **Navigation**: scroll-spy highlights the current section (`NavLinks.tsx`, `nav.ts`); a mobile menu (`MobileNav.tsx`) replaces the desktop links under 600px. Section ids live in `nav.ts`. The header slides away when you scroll down past 700px and comes back when you scroll up.
+- **Language**: English/Indonesian toggle in the header; your choice is stored in `localStorage`.
+- **Sound**: subtle synthesized click sounds and haptics (`src/lib/feedback.ts`), with a mute toggle.
 - **Scroll progress bar** and a **back-to-top button** that returns keyboard focus to the page start.
 - **Live local time** in the hero.
 - **Project filter** replays a staggered card animation and announces results to screen readers.
@@ -90,6 +95,7 @@ src/
     icon.svg              # favicon (placeholder)
     not-found.tsx         # 404 page
     robots.ts             # robots.txt
+    llms.txt/route.ts     # plain-text content summary
     cv/page.tsx           # unlisted CV working copy
     api/contact/route.ts  # contact form handler (Resend)
   components/             # header, sections, nav, motion widgets, /cv tooling, icons
@@ -97,14 +103,18 @@ src/
     data.json             # all page content
     types.ts              # content types
     index.ts              # typed loader
-    cvFormat.ts           # copy formatters used by /cv
+    cvFormat.ts           # copy formatters used by /cv and /llms.txt
+    i18n.ts               # UI strings and Indonesian translation
+    github-contributions.json  # heatmap snapshot (generated)
+  lib/feedback.ts         # UI sounds and haptics
+scripts/sync-github.mjs   # regenerates the heatmap snapshot
 public/
-  assets/                 # downloadable CV PDF
-  brand/logomark.svg      # header logomark (placeholder)
+  assets/                 # CV PDF, brand guidelines PDF, hero portraits
+  brand/                  # logomark, background pattern
 legacy/                   # the original static site, kept for reference
 ```
 
-`.kiro/` (local agent notes) and `context/` (brand kit) are git-ignored.
+`agents.md` and `.kiro/` hold agent steering notes and are committed. `context/` (brand kit) is git-ignored.
 
 ## Contact form
 
@@ -130,7 +140,7 @@ CONTACT_TO_EMAIL=you@example.com
 3. Under **Settings → Environment Variables**, add `RESEND_API_KEY` (and optionally `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL`).
 4. Deploy. Every push to the connected branch triggers a new deployment, with preview URLs for other branches.
 
-Branches: the app lives on `nextjs-migration`; `main` still has the legacy GitHub Pages site. Set Vercel's Production Branch (**Settings → Git**) to the branch you want live. Changing it does not rebuild, so redeploy afterwards.
+Branches: both `main` and `nextjs-migration` hold the Next.js app (the old static site is under `legacy/`). Set Vercel's Production Branch (**Settings → Git**) to the branch you want live. Changing it does not rebuild, so redeploy afterwards.
 
 Troubleshooting: if a deployment shows **Ready** but its own URL returns a 404, check that Framework Preset is Next.js and that no Output Directory or wrong Root Directory is set.
 

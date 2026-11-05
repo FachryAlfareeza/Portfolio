@@ -7,13 +7,16 @@
     "build must pass tsc and lint"
   ],
   "pending": [
-    "scroll-responsive nav hide",
-    "marquee skills display"
+    "marquee skills display",
+    "about section redesign",
+    "hero text reveals",
+    "background pointer-responsive effects"
   ],
-  "recent": [
+  "completed": [
     "added ambigram logomark to hero portrait blob",
-    "fixed scroll rotation strength (0.15 deg/px)",
-    "fixed hover speed multiplier (1.4x)",
-    "fixed logomark size (32% blob width, centered)"
+    "scroll-responsive nav hide - hides on scroll down past 700px, reappears on scroll up",
+    "hero portrait: pointer-follow on hover, drift (~2-8 deg/s) plus scroll-velocity spin, no snapping at +/-180 deg",
+    "github heatmap includes private-repo contributions via GITHUB_TOKEN (npm run sync:github)",
+    "removed unused Visby brand font files"
   ]
 }
